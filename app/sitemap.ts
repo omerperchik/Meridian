@@ -19,12 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static top-level
   const staticPaths = [
     "", "/standards", "/standards/uaop", "/standards/conduct-codes", "/standards/changelog",
-    "/trust", "/trust/feed",
+    "/trust", "/trust/feed", "/trust/tiers", "/trust/disputes", "/intel",
     "/directory", "/directory/agents", "/directory/mcp-servers", "/directory/tools", "/directory/frameworks", "/directory/leaderboards",
     "/threats", "/incidents", "/incidents/submit", "/rulings", "/rulings/submit",
-    "/arena", "/arena/submit",
+    "/arena", "/arena/submit", "/arena/red-team", "/standards/constitution",
     "/scanner", "/briefing",
-    "/governance", "/governance/votes",
+    "/governance", "/governance/votes", "/governance/editorial", "/governance/conflicts", "/governance/audit",
     "/developers", "/developers/api", "/developers/sdk", "/developers/mcp", "/developers/machine-files", "/developers/webhooks",
     "/learn", "/series", "/glossary", "/regulation",
     "/trust-report", "/get-listed", "/get-listed/submit",
