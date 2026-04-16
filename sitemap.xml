@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://meridian.ai/</loc><lastmod>2026-04-16</lastmod><priority>1.0</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://meridian.ai/standards/</loc><lastmod>2026-04-16</lastmod><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://meridian.ai/standards/constitution/</loc><lastmod>2026-04-16</lastmod><priority>1.0</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/constitution/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/trust-score/</loc><lastmod>2026-04-16</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/threats/</loc><lastmod>2026-04-16</lastmod><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/incidents/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/rulings/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/arena/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/directory/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://meridian.ai/pillars/scanner/</loc><lastmod>2026-04-16</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/directory/</loc><lastmod>2026-04-16</lastmod><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://meridian.ai/governance/</loc><lastmod>2026-04-16</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://meridian.ai/api/</loc><lastmod>2026-04-16</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+</urlset>

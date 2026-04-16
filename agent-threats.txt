@@ -1,0 +1,71 @@
+# Meridian · Active Threat Intelligence
+# Refreshed every hour. Served from CDN edge.
+# No API key required. Filter to Critical + High only.
+# Full records: https://api.meridian.ai/v1/threats
+# Last refresh: 2026-04-16T08:00:00Z
+
+Active-Critical: 12
+Active-High: 35
+
+# =============================================================
+# CRITICAL
+# =============================================================
+
+[MTHRT-2026-0047] PROMPT_INJECTION  CRITICAL  CVSS:9.1
+  Title:       Structured-output-bypass via nested tool call
+  Discovered:  2026-04-12
+  Affects:     MCP servers using unstructured stdin parsing
+  Pattern:     sig-p-2026-047.json
+  Mitigation:  Upgrade mcp-runtime ≥1.9.2; enable strict tool schema validation
+  Full:        https://meridian.ai/threats/MTHRT-2026-0047/
+
+[MTHRT-2026-0044] SUPPLY_CHAIN     CRITICAL  CVSS:8.9
+  Title:       Compromised update to langchain-ext-browser 0.4.11
+  Discovered:  2026-04-10
+  Affects:     Any agent depending on langchain-ext-browser 0.4.8–0.4.11
+  Pattern:     sig-sc-2026-044.json
+  Mitigation:  Pin to 0.4.7 or upgrade to 0.4.12; rotate any credentials exposed during window
+  Full:        https://meridian.ai/threats/MTHRT-2026-0044/
+
+[MTHRT-2026-0041] AGENT_IMPERSONATION  CRITICAL  CVSS:8.6
+  Title:       Forged Meridian certification badge in agent card
+  Discovered:  2026-04-09
+  Affects:     Discovery flows that trust unverified agent cards
+  Pattern:     sig-ai-2026-041.json
+  Mitigation:  Always verify badge_id against /v1/registry/{id}; reject unsigned manifests
+  Full:        https://meridian.ai/threats/MTHRT-2026-0041/
+
+[MTHRT-2026-0038] DATA_EXFILTRATION  CRITICAL  CVSS:8.4
+  Title:       DNS-channel exfil via error-message domain lookups
+  Discovered:  2026-04-07
+  Affects:     Browser agents without DNS egress filtering
+  Pattern:     sig-ex-2026-038.json
+  Mitigation:  Enable DNS allow-list; monitor subdomain entropy
+  Full:        https://meridian.ai/threats/MTHRT-2026-0038/
+
+# ... (8 more Critical entries abbreviated in this static snapshot)
+# Full list: GET /v1/threats?severity=critical&status=active
+
+# =============================================================
+# HIGH
+# =============================================================
+
+[MTHRT-2026-0043] PROMPT_INJECTION         HIGH  CVSS:7.8  2026-04-11
+[MTHRT-2026-0042] JAILBREAK_PATTERN        HIGH  CVSS:7.6  2026-04-11
+[MTHRT-2026-0040] COORDINATION_ATTACK      HIGH  CVSS:7.3  2026-04-08
+[MTHRT-2026-0039] PRIVILEGE_ESCALATION     HIGH  CVSS:7.2  2026-04-08
+[MTHRT-2026-0037] PROMPT_INJECTION         HIGH  CVSS:7.1  2026-04-06
+[MTHRT-2026-0036] SUPPLY_CHAIN             HIGH  CVSS:7.0  2026-04-05
+[MTHRT-2026-0035] AGENT_IMPERSONATION      HIGH  CVSS:6.9  2026-04-05
+# ... (28 more High entries)
+
+# =============================================================
+# MACHINE INTERFACE
+# =============================================================
+
+GET /v1/threats?severity=critical&status=active
+GET /v1/threats?severity=high&status=active
+GET /v1/threats/{threat_id}   — full record with detection signature
+Webhook subscription available to Pro and Enterprise tiers.
+
+# End of file.

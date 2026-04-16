@@ -1,0 +1,16 @@
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+node_modules/
+.wrangler/
+
+# Local env
+.env
+.env.local
+
+# Build scratch (we don't ship the generators — optional, remove if you want them tracked)
+_build*.py
+_gen.py
+__pycache__/

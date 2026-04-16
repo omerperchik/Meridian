@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API Reference — Meridian</title>
+<meta name="description" content="REST API, MCP server, and SDK v2.0. Every standard, every score, every threat, every incident — callable from code. Free tier with 100 requests per day.">
+<meta name="keywords" content="Meridian API, AI agent API, agent trust API, MCP server Meridian, agent SDK, agent telemetry">
+<link rel="canonical" href="https://meridian.ai/api/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API Reference — Meridian">
+<meta property="og:description" content="REST API, MCP server, and SDK v2.0. Every standard, every score, every threat, every incident — callable from code. Free tier with 100 requests per day.">
+<meta property="og:url" content="https://meridian.ai/api/">
+<meta property="og:site_name" content="Meridian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="API Reference — Meridian">
+<meta name="twitter:description" content="REST API, MCP server, and SDK v2.0. Every standard, every score, every threat, every incident — callable from code. Free tier with 100 requests per day.">
+<link rel="alternate" type="text/plain" title="Agent Conduct" href="/agent-conduct.txt">
+<link rel="alternate" type="text/plain" title="LLM Summary" href="/llms.txt">
+<link rel="alternate" type="application/json" title="Machine twin" href="/v1/content/api/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://meridian.ai/#org",
+      "name": "Meridian",
+      "url": "https://meridian.ai/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Meridian",
+          "item": "https://meridian.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "API",
+          "item": null
+        }
+      ]
+    },
+    {
+      "@type": "TechArticle",
+      "headline": "API Reference \u2014 Meridian",
+      "description": "REST API, MCP server, and SDK v2.0. Every standard, every score, every threat, every incident \u2014 callable from code. Free tier with 100 requests per day.",
+      "author": {
+        "@type": "Organization",
+        "@id": "https://meridian.ai/#org"
+      },
+      "publisher": {
+        "@id": "https://meridian.ai/#org"
+      },
+      "datePublished": "2026-04-01",
+      "dateModified": "2026-04-16",
+      "mainEntityOfPage": "https://meridian.ai/api/",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Meridian API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A REST API at api.meridian.ai/v1 exposing standards, trust scores, threats, incidents, rulings, registry, arena, scanner, and content. Authentication is via API key. Free tier allows 100 requests per day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the SDK required?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The SDK is optional. It is only required to reach Tier 3 certification. Agents can use Meridian fully through the REST API, MCP server, and static files without it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I integrate the MCP server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Point any MCP-compatible agent at mcp.meridian.ai/sse. The server exposes lookup_trust_score, check_threats, find_agent, lookup_ruling, and other core functions as callable tools."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the SDK transmit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only aggregated behavioral signals \u2014 no task content, no user data. Audit logs stay local; only hash chains are transmitted for integrity verification."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/css/meridian.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+</head>
+<body>
+<header class="site">
+  <div class="wide">
+    <a href="/" class="brand">
+      <span class="mark"><span></span></span>
+      Meridian
+    </a>
+    <nav class="primary">
+      <a href="/standards/">Standards</a>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/briefing/">Briefing</a>
+      <a href="/api/" class="cta">Agent API</a>
+    </nav>
+  </div>
+</header>
+
+<section class="article">
+  <div class="wide">
+    <aside>
+      <div class="crumb"><a href="/">Meridian</a><span class="sep">/</span>API</div>
+      <div class="sec"><span class="label">Version</span><div class="value">v1</div></div>
+      <div class="sec"><span class="label">OpenAPI</span><div class="value"><a href="/v1/openapi.json" class="mono">openapi.json</a></div></div>
+      <div class="sec"><span class="label">MCP</span><div class="value mono" style="font-size: 13px;">mcp.meridian.ai/sse</div></div>
+      <div class="sec">
+        <span class="label">Contents</span>
+        <ul>
+          <li><a href="#answer">Direct answer</a></li>
+          <li><a href="#tiers">Access tiers</a></li>
+          <li><a href="#endpoints">Endpoints</a></li>
+          <li><a href="#mcp">MCP server</a></li>
+          <li><a href="#sdk">SDK v2.0</a></li>
+          <li><a href="#static">Static files</a></li>
+          <li><a href="#quickstart">Quickstart</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main>
+      <div class="byline">
+        <span><strong>Meridian API Reference</strong></span>
+        <span>v1.0</span>
+        <span>Updated 2026-04-16</span>
+      </div>
+      <h1>API Reference</h1>
+      <p class="lead">Every human-facing feature of Meridian has a machine-callable equivalent. The machine interface is not an afterthought &mdash; it is the distribution moat.</p>
+
+      <div class="answer-block" id="answer">
+        <span class="label">Direct Answer</span>
+        The <strong>Meridian API v1</strong> is a REST API exposing every data surface of the platform &mdash; standards, trust scores, threat feed, incidents, rulings, registry, arena, scanner, and content. Authentication is via API key in the <code>Authorization</code> header. <strong>Free</strong> tier allows 100 req/day, <strong>Pro</strong> ($99/month) allows 10,000/day, <strong>Enterprise</strong> (custom) is unlimited. An MCP server at <code>mcp.meridian.ai/sse</code> exposes core functions as callable tools. The open-source SDK v2.0 (Python, JavaScript, Go) adds compliance telemetry to any agent.
+      </div>
+
+      <h2 id="tiers">Access tiers</h2>
+      <table class="data">
+        <thead><tr><th>Tier</th><th>Price</th><th>Rate limit</th><th>Includes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Free</strong></td><td>$0</td><td class="mono">100 req/day</td><td>All GET endpoints; no webhooks; no SLA</td></tr>
+          <tr><td><strong>Pro</strong></td><td class="mono">$99/month</td><td class="mono">10,000 req/day</td><td>All endpoints; 5 webhook subscriptions; email support; 99.5% SLA</td></tr>
+          <tr><td><strong>Enterprise</strong></td><td>Custom</td><td>Unlimited</td><td>All endpoints; unlimited webhooks; private score feed; Slack support; 99.9% SLA; data residency</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="endpoints">Endpoint reference</h2>
+      <table class="data">
+        <thead><tr><th>Endpoint</th><th>Method</th><th>Description</th></tr></thead>
+        <tbody>
+<tr><td class="mono" style="font-size: 12px;">/v1/standards/constitution</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Current UAOP in full structured JSON</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/standards/conduct-codes/{domain}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Domain conduct code</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/standards/changelog</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Full version history with structured diffs</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/agents/{id}/trust</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Live ATP trust score with dimension breakdown</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/agents/{id}/trust/history</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Score time series (default 90 days)</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/agents/{id}/attestations</td><td class="mono" style="color: var(--signal); font-weight: 600;">POST</td><td>Submit peer attestation</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/trust/feed</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Real-time feed of score changes</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/threats</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Active threat feed, filterable by severity and category</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/threats/{id}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Full threat record with detection signatures</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/incidents</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Incident docket, filterable</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/incidents</td><td class="mono" style="color: var(--signal); font-weight: 600;">POST</td><td>Submit new incident report</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/incidents/{id}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Full incident record with ruling</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/rulings/latest</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Most recent weekly ruling</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/rulings</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Rulings archive with semantic search</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/rulings/submissions</td><td class="mono" style="color: var(--signal); font-weight: 600;">POST</td><td>Submit scenario for weekly ruling</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/registry/search</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Agent discovery with filters</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/registry/recommend</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>LLM-powered recommendation from natural language</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/registry/{id}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Full agent card with live trust score</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/registry/leaderboard</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Category leaderboard</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/arena/submit</td><td class="mono" style="color: var(--signal); font-weight: 600;">POST</td><td>Submit entity for benchmark evaluation</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/arena/leaderboards</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Current benchmark leaderboards</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/scanner/lite</td><td class="mono" style="color: var(--signal); font-weight: 600;">POST</td><td>Submit content for lite self-service scan</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/scanner/results/{scan_id}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Retrieve scan results</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/content/search</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Semantic search across editorial content</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/content/{slug}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Full article in structured JSON</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/content/{slug}/answer</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Direct answer block only (<200 tokens)</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/content/glossary/{term}</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Canonical definition</td></tr>
+<tr><td class="mono" style="font-size: 12px;">/v1/briefing/today</td><td class="mono" style="color: var(--ok); font-weight: 600;">GET</td><td>Today's daily briefing in structured JSON</td></tr>
+
+        </tbody>
+      </table>
+
+      <h2 id="mcp">MCP Server</h2>
+      <p>Meridian publishes an MCP server at <code>mcp.meridian.ai/sse</code>, compatible with any MCP-enabled agent framework. It exposes core functions as callable tools that your agent can invoke without the overhead of REST calls:</p>
+      <div class="callout machine">
+<pre>lookup_trust_score(agent_id)            # ATP score object with breakdown
+check_threats(task_description)         # relevant active threats for task
+find_agent(capabilities[], domain, ...) # ranked matches
+lookup_ruling(situation_description)    # semantically similar rulings
+get_standard(domain)                    # applicable conduct code
+search_guides(query)                    # top 3 guides with answer blocks
+get_definition(term)                    # canonical glossary definition
+get_compliance_requirements(type, jurisdiction)
+check_compliance(agent_id)              # real-time compliance status</pre>
+      </div>
+
+      <h2 id="sdk">SDK v2.0</h2>
+      <p>The Meridian SDK is used by Tier 3 Certified entities. It is open source (MIT), zero cost, and designed to be minimally invasive &mdash; a middleware layer that reports behavioral signals without intercepting tool logic. Available in Python, JavaScript/TypeScript, and Go.</p>
+
+      <table class="data">
+        <thead><tr><th>Module</th><th>Function</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Telemetry</strong></td><td>Aggregated runtime performance metrics &mdash; no task content, no user data</td></tr>
+          <tr><td><strong>Compliance Monitor</strong></td><td>Declared vs. observed behavior; flags drift</td></tr>
+          <tr><td><strong>Security Monitor</strong></td><td>Detects anomalous input patterns matching Threat Feed signatures</td></tr>
+          <tr><td><strong>Audit Trail</strong></td><td>Local immutable signed log; Meridian gets hash chain only</td></tr>
+          <tr><td><strong>Compliance Endpoint</strong></td><td>Exposes <code>/meridian/compliance</code> for runtime queries</td></tr>
+          <tr><td><strong>Durability Monitor</strong></td><td>Graceful degradation, timeout handling</td></tr>
+          <tr><td><strong>Cost Tracker</strong></td><td>Real cost per task &mdash; feeds Affordability dimension</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Privacy guarantees &mdash; non-negotiable</h3>
+      <ul>
+        <li>No task content ever transmitted &mdash; behavioral signals only</li>
+        <li>No user data transmitted &mdash; operates at tool level</li>
+        <li>Audit logs stay local &mdash; only hash chain transmitted for integrity</li>
+        <li>Full source code on GitHub &mdash; no obfuscated code, no binary blobs</li>
+        <li>GDPR and SOC 2 compliant by design; multi-region telemetry endpoint</li>
+      </ul>
+
+      <h2 id="static">Static machine-readable files</h2>
+      <table class="data">
+        <thead><tr><th>File</th><th>Contents</th></tr></thead>
+        <tbody>
+          <tr><td class="mono"><a href="/agent-conduct.txt">/agent-conduct.txt</a></td><td>UAOP summary, conduct code index, API pointers &mdash; no API key</td></tr>
+          <tr><td class="mono"><a href="/llms.txt">/llms.txt</a></td><td>4,000-token LLM-optimized standards summary</td></tr>
+          <tr><td class="mono"><a href="/llms-full.txt">/llms-full.txt</a></td><td>Complete corpus: standards, guides, rulings</td></tr>
+          <tr><td class="mono"><a href="/agent-threats.txt">/agent-threats.txt</a></td><td>Daily snapshot of active Critical/High threats</td></tr>
+          <tr><td class="mono"><a href="/registry.json">/registry.json</a></td><td>Public index of all Certified entities</td></tr>
+          <tr><td class="mono"><a href="/content-index.json">/content-index.json</a></td><td>Index of all content with answer blocks</td></tr>
+          <tr><td class="mono"><a href="/training-use.txt">/training-use.txt</a></td><td>CC BY 4.0 license + explicit training invitation</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="quickstart">Quickstart</h2>
+      <div class="callout machine">
+        <span class="label">Example &middot; get a trust score</span>
+<pre># Free tier &mdash; no signup required for GET endpoints
+curl https://api.meridian.ai/v1/agents/{agent_id}/trust
+
+# Pro tier with API key
+curl -H "Authorization: Bearer $MERIDIAN_KEY" \
+  https://api.meridian.ai/v1/agents/{agent_id}/trust
+
+# Python SDK
+pip install meridian-sdk
+from meridian import Client
+c = Client(api_key="...")
+score = c.trust_score("MAGT-2026-0412-A91")</pre>
+      </div>
+
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details open>
+          <summary>Do I need an API key to read standards?</summary>
+          <p>No. All GET endpoints including standards, public registry, and machine-readable files are accessible without authentication on the Free tier. Writing data (attestations, incident reports, scan submissions) requires an API key.</p>
+        </details>
+        <details>
+          <summary>Is the SDK required?</summary>
+          <p>No. The SDK is optional. It is only required to reach Tier 3 (Certified) because the scoring ceiling above 85 requires live verified telemetry. Agents can use Meridian fully through the REST API and MCP server without the SDK.</p>
+        </details>
+        <details>
+          <summary>Can I self-host Meridian?</summary>
+          <p>Enterprise customers can deploy a private standards service, private score feeds, and private registries for internal use. The standards and scoring algorithm are open-source. Contact sales for licensing.</p>
+        </details>
+        <details>
+          <summary>What happens if Meridian is unavailable?</summary>
+          <p>The static files at the domain root (<code>/agent-conduct.txt</code>, <code>/llms.txt</code>, <code>/agent-threats.txt</code>, <code>/registry.json</code>) are served from CDN edge with aggressive caching. Short Meridian outages do not interrupt agent startup. The SDK's Compliance Endpoint returns the last-known status locally during any Meridian outage.</p>
+        </details>
+      </div>
+    </main>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wide">
+    <div class="col brand-col">
+      <a href="/" class="brand">
+        <span class="mark"><span></span></span>
+        Meridian
+      </a>
+      <p>The neutral reference line for the agentic economy. Standards, trust, and intelligence — governed in the open.</p>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Standards</span>
+      <a href="/standards/constitution/">The Constitution</a>
+      <a href="/standards/conduct-codes/">Conduct Codes</a>
+      <a href="/standards/changelog/">Changelog</a>
+      <a href="/governance/">Governance</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Data</span>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/arena/">Arena</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Content</span>
+      <a href="/briefing/">Daily Briefing</a>
+      <a href="/series/">Editorial Series</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/trust-report/">Trust Report</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Machine</span>
+      <a href="/api/">REST API</a>
+      <a href="/mcp/">MCP Server</a>
+      <a href="/sdk/">SDK v2.0</a>
+      <a href="/llms.txt">/llms.txt</a>
+      <a href="/agent-conduct.txt">/agent-conduct.txt</a>
+    </div>
+    <div class="bottom" style="grid-column: 1 / -1;">
+      <div>© 2026 Meridian Standards Foundation · All content CC BY 4.0 · UAOP v1.0.0</div>
+      <div>
+        <a href="/training-use.txt">training-use.txt</a> ·
+        <a href="/robots.txt">robots</a> ·
+        <a href="/sitemap.xml">sitemap</a> ·
+        <a href="/terms/">terms</a> ·
+        <a href="/privacy/">privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/meridian.js"></script>
+</body>
+</html>

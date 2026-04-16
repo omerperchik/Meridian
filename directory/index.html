@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directory — Every AI Agent, MCP, Tool & Framework | Meridian</title>
+<meta name="description" content="Searchable directory of every registered AI agent, MCP server, tool, and framework. Ranked by verified trust score. Filter by capability, domain, protocol, and certification tier.">
+<meta name="keywords" content="AI agent directory, MCP server directory, best AI agents, agent registry, agent discovery, find AI agent">
+<link rel="canonical" href="https://meridian.ai/directory/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Directory — Every AI Agent, MCP, Tool & Framework | Meridian">
+<meta property="og:description" content="Searchable directory of every registered AI agent, MCP server, tool, and framework. Ranked by verified trust score. Filter by capability, domain, protocol, and certification tier.">
+<meta property="og:url" content="https://meridian.ai/directory/">
+<meta property="og:site_name" content="Meridian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Directory — Every AI Agent, MCP, Tool & Framework | Meridian">
+<meta name="twitter:description" content="Searchable directory of every registered AI agent, MCP server, tool, and framework. Ranked by verified trust score. Filter by capability, domain, protocol, and certification tier.">
+<link rel="alternate" type="text/plain" title="Agent Conduct" href="/agent-conduct.txt">
+<link rel="alternate" type="text/plain" title="LLM Summary" href="/llms.txt">
+<link rel="alternate" type="application/json" title="Machine twin" href="/v1/content/directory/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://meridian.ai/#org",
+      "name": "Meridian",
+      "url": "https://meridian.ai/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Meridian",
+          "item": "https://meridian.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Directory",
+          "item": null
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is listing free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Basic registration is free forever. Verified claiming is free. Premium reviews that unlock higher ATP score ceilings are paid, ranging from $499 for tools to $1,999 for frameworks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How fast are new entities discovered?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The discovery pipeline crawls GitHub, npm, PyPI, Product Hunt, Hacker News, and X daily. New entities receive Tier 0 scoring within 4 hours of detection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I access the directory programmatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. /registry.json is a public index with no authentication required. The full search API is /v1/registry/search with filters for capability, domain, protocol, and minimum trust score."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I claim my entity?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Verify ownership via GitHub OAuth or a DNS TXT record on your domain. Claimed entities can access Tier 1 scoring (up to 70) for free."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/css/meridian.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+</head>
+<body>
+<header class="site">
+  <div class="wide">
+    <a href="/" class="brand">
+      <span class="mark"><span></span></span>
+      Meridian
+    </a>
+    <nav class="primary">
+      <a href="/standards/">Standards</a>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/briefing/">Briefing</a>
+      <a href="/api/" class="cta">Agent API</a>
+    </nav>
+  </div>
+</header>
+
+<section class="tight" style="padding-top: 80px;">
+  <div class="wide">
+    <div class="crumb"><a href="/">Meridian</a><span class="sep">/</span>Directory</div>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px; flex-wrap: wrap; gap: 24px;">
+      <div>
+        <h1>The Directory</h1>
+        <p class="lead" style="margin-top: 16px;">Every registered agent, MCP server, tool, and framework. Ranked by verified behavioral data.</p>
+      </div>
+      <div style="font-family: var(--mono); font-size: 12px; color: var(--ink-3); text-align: right;">
+        <div>2,184 entities registered</div>
+        <div>1.4M API calls / day</div>
+        <div>Updated every minute</div>
+      </div>
+    </div>
+    <div class="answer-block" style="margin-top: 40px;">
+      <span class="label">Direct Answer</span>
+      The <strong>Meridian Directory</strong> is the searchable index of every registered AI agent, MCP server, tool, and framework. Every entity has a standardized agent card, a live ATP trust score (0–100), and a certification tier from Registered (free) to Certified (SDK-integrated). Discover via structured filter search, natural-language recommendation, or category leaderboards. Free to browse and free to list.
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wide">
+    <div style="display: grid; grid-template-columns: 260px 1fr; gap: 48px;">
+      <aside style="font-size: 14px;">
+        <div style="padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 20px;">
+          <span class="eyebrow" style="display: block; margin-bottom: 12px;">Entity type</span>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox" checked> AI Agents <span class="small">· 842</span></label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox" checked> MCP Servers <span class="small">· 614</span></label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox" checked> Tools &amp; Libraries <span class="small">· 491</span></label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox" checked> Frameworks <span class="small">· 237</span></label>
+        </div>
+        <div style="padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 20px;">
+          <span class="eyebrow" style="display: block; margin-bottom: 12px;">Domain</span>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Finance</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Legal</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Medical</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Code</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Research</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Customer Ops</label>
+        </div>
+        <div style="padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 20px;">
+          <span class="eyebrow" style="display: block; margin-bottom: 12px;">Tier</span>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Tier 3 · Certified</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Tier 2 · Audited</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Tier 1 · Verified</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> Tier 0 · Discovered</label>
+        </div>
+        <div style="padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 20px;">
+          <span class="eyebrow" style="display: block; margin-bottom: 12px;">Min trust score</span>
+          <input type="range" min="0" max="100" value="60" style="width: 100%;">
+          <div class="mono small" style="margin-top: 6px;">&ge; 60</div>
+        </div>
+        <div>
+          <span class="eyebrow" style="display: block; margin-bottom: 12px;">Protocol</span>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> MCP</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> OpenAI</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> A2A</label>
+          <label style="display: block; padding: 4px 0;"><input type="checkbox"> REST</label>
+        </div>
+      </aside>
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 16px; flex-wrap: wrap;">
+          <div style="font-family: var(--mono); font-size: 12px; color: var(--ink-3);">Showing 12 of 2,184</div>
+          <div style="display: flex; gap: 8px;">
+            <button style="padding: 6px 12px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;">Trust &darr;</button>
+            <button style="padding: 6px 12px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;">Rising</button>
+            <button style="padding: 6px 12px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;">New</button>
+          </div>
+        </div>
+        <table class="data">
+          <thead><tr><th>Entity</th><th>Type</th><th>Domain</th><th>Protocol</th><th>Tier</th><th style="text-align: right;">Trust</th><th>&Delta; 30d</th></tr></thead>
+          <tbody>
+<tr>
+<td><strong>Example Research Agent</strong><div class="small">research-labs.ai</div></td>
+<td>AI Agent</td><td>Research</td><td class="mono">MCP</td>
+<td><span class="chip ok">T3 · Certified</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">87</strong></td>
+<td class="mono" style="color: var(--ok);">+2</td>
+</tr>
+<tr>
+<td><strong>filesystem-mcp</strong><div class="small">anthropic-samples</div></td>
+<td>MCP Server</td><td>General</td><td class="mono">MCP</td>
+<td><span class="chip ok">T3 · Certified</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">91</strong></td>
+<td class="mono" style="color: var(--ok);">+1</td>
+</tr>
+<tr>
+<td><strong>CrewAI</strong><div class="small">crew-ai.com</div></td>
+<td>Framework</td><td>General</td><td class="mono">OpenAI</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">78</strong></td>
+<td class="mono" style="color: var(--ok);">+5</td>
+</tr>
+<tr>
+<td><strong>LangGraph</strong><div class="small">langchain.dev</div></td>
+<td>Framework</td><td>General</td><td class="mono">REST</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">82</strong></td>
+<td class="mono" style="color: var(--ink-3);">—</td>
+</tr>
+<tr>
+<td><strong>fin-agent-pro</strong><div class="small">financestack.io</div></td>
+<td>AI Agent</td><td>Finance</td><td class="mono">MCP</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">84</strong></td>
+<td class="mono" style="color: var(--ok);">+3</td>
+</tr>
+<tr>
+<td><strong>browser-mcp-secure</strong><div class="small">browsers.dev</div></td>
+<td>MCP Server</td><td>General</td><td class="mono">MCP</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">79</strong></td>
+<td class="mono" style="color: var(--ok);">+7</td>
+</tr>
+<tr>
+<td><strong>Semantic Kernel</strong><div class="small">microsoft</div></td>
+<td>Framework</td><td>General</td><td class="mono">REST</td>
+<td><span class="chip ">T1 · Verified</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">68</strong></td>
+<td class="mono" style="color: var(--ink-3);">—</td>
+</tr>
+<tr>
+<td><strong>code-review-agent</strong><div class="small">devtools.sh</div></td>
+<td>AI Agent</td><td>Code</td><td class="mono">MCP</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">81</strong></td>
+<td class="mono" style="color: var(--ok);">+4</td>
+</tr>
+<tr>
+<td><strong>PydanticAI</strong><div class="small">pydantic.dev</div></td>
+<td>Tool</td><td>General</td><td class="mono">REST</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">80</strong></td>
+<td class="mono" style="color: var(--ok);">+2</td>
+</tr>
+<tr>
+<td><strong>calendar-mcp</strong><div class="small">productivity.io</div></td>
+<td>MCP Server</td><td>General</td><td class="mono">MCP</td>
+<td><span class="chip ">T1 · Verified</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">66</strong></td>
+<td class="mono" style="color: var(--ink-3);">—</td>
+</tr>
+<tr>
+<td><strong>research-orchestrator</strong><div class="small">research-labs.ai</div></td>
+<td>AI Agent</td><td>Research</td><td class="mono">A2A</td>
+<td><span class="chip ">T1 · Verified</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">64</strong></td>
+<td class="mono" style="color: var(--ok);">+8</td>
+</tr>
+<tr>
+<td><strong>LlamaIndex</strong><div class="small">llamaindex.ai</div></td>
+<td>Tool</td><td>General</td><td class="mono">REST</td>
+<td><span class="chip warn">T2 · Audited</span></td>
+<td style="text-align: right;" class="mono"><strong style="color: var(--ink);">77</strong></td>
+<td class="mono" style="color: var(--ink-3);">—</td>
+</tr>
+
+          </tbody>
+        </table>
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="#" class="btn ghost">Load more <span class="arr">&rarr;</span></a>
+        </div>
+        <div class="callout machine" style="margin-top: 48px;">
+          <span class="label">Machine interface</span>
+<pre>GET /v1/registry/search?capabilities=code_review&amp;domain=finance&amp;min_trust=80
+GET /v1/registry/recommend?task={natural_language_task}
+GET /registry.json            # public index, no API key</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wide">
+    <div class="col brand-col">
+      <a href="/" class="brand">
+        <span class="mark"><span></span></span>
+        Meridian
+      </a>
+      <p>The neutral reference line for the agentic economy. Standards, trust, and intelligence — governed in the open.</p>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Standards</span>
+      <a href="/standards/constitution/">The Constitution</a>
+      <a href="/standards/conduct-codes/">Conduct Codes</a>
+      <a href="/standards/changelog/">Changelog</a>
+      <a href="/governance/">Governance</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Data</span>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/arena/">Arena</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Content</span>
+      <a href="/briefing/">Daily Briefing</a>
+      <a href="/series/">Editorial Series</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/trust-report/">Trust Report</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Machine</span>
+      <a href="/api/">REST API</a>
+      <a href="/mcp/">MCP Server</a>
+      <a href="/sdk/">SDK v2.0</a>
+      <a href="/llms.txt">/llms.txt</a>
+      <a href="/agent-conduct.txt">/agent-conduct.txt</a>
+    </div>
+    <div class="bottom" style="grid-column: 1 / -1;">
+      <div>© 2026 Meridian Standards Foundation · All content CC BY 4.0 · UAOP v1.0.0</div>
+      <div>
+        <a href="/training-use.txt">training-use.txt</a> ·
+        <a href="/robots.txt">robots</a> ·
+        <a href="/sitemap.xml">sitemap</a> ·
+        <a href="/terms/">terms</a> ·
+        <a href="/privacy/">privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/meridian.js"></script>
+</body>
+</html>

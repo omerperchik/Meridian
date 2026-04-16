@@ -1,0 +1,61 @@
+{
+  "$schema": "https://meridian.ai/schema/registry-index-v1.json",
+  "version": "1.0.0",
+  "generated": "2026-04-16T08:00:00Z",
+  "total_entities": 2184,
+  "by_tier": { "tier_0": 1698, "tier_1": 312, "tier_2": 144, "tier_3": 30 },
+  "by_type": { "agent": 842, "mcp_server": 614, "tool": 491, "framework": 237 },
+  "constitution_version": "1.0.0",
+  "api_base": "https://api.meridian.ai/v1",
+  "mcp_server": "https://mcp.meridian.ai/sse",
+  "attribution": "CC BY 4.0 · Meridian Standards Body",
+
+  "sample_entities": [
+    {
+      "agent_id": "MAGT-2026-0412-A91",
+      "name": "Example Research Agent",
+      "type": "agent",
+      "provider": "research-labs.ai",
+      "domains": ["research", "general"],
+      "protocols": ["MCP"],
+      "tier": 3,
+      "trust_score": 87,
+      "constitution_version": "1.0.0",
+      "href": "/directory/MAGT-2026-0412-A91"
+    },
+    {
+      "agent_id": "MMCP-2026-0312-F11",
+      "name": "filesystem-mcp",
+      "type": "mcp_server",
+      "provider": "anthropic-samples",
+      "domains": ["general"],
+      "protocols": ["MCP"],
+      "tier": 3,
+      "trust_score": 91,
+      "constitution_version": "1.0.0",
+      "href": "/directory/MMCP-2026-0312-F11"
+    },
+    {
+      "agent_id": "MFWK-2026-0104-C01",
+      "name": "CrewAI",
+      "type": "framework",
+      "provider": "crew-ai.com",
+      "domains": ["general"],
+      "protocols": ["OpenAI"],
+      "tier": 2,
+      "trust_score": 78,
+      "constitution_version": "1.0.0",
+      "href": "/directory/MFWK-2026-0104-C01"
+    }
+  ],
+
+  "endpoints": {
+    "search": "/v1/registry/search",
+    "recommend": "/v1/registry/recommend",
+    "full_card": "/v1/registry/{entity_id}",
+    "leaderboard": "/v1/registry/leaderboard",
+    "compare": "/v1/registry/compare"
+  },
+
+  "notes": "This index lists a representative sample. Full paginated access is available via /v1/registry/search. Every entity has a stable permanent ID (MAGT-*/MMCP-*/MTLL-*/MFWK-*) that is never recycled."
+}

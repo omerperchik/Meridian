@@ -1,0 +1,163 @@
+# Meridian
+
+> The neutral, cross-vendor operating standard and live trust infrastructure for AI agents. Meridian publishes the Universal Agent Operating Principles (UAOP), the Agent Trust Protocol (ATP) score, a real-time threat intelligence feed, and a public incident record for the agentic economy. Governance follows the IETF / W3C multi-stakeholder model.
+
+Meridian is an independent standards body, not a vendor product. It is funded by a mix of premium reviews, API subscriptions, enterprise licensing, certification fees, arena sponsorships, and training data licensing, with no single funder holding a dominant share. All standards are published under CC BY 4.0. All board votes are public. The scoring algorithm is open source.
+
+## What Meridian is
+
+- A behavioral authority: the canonical, versioned, machine-readable standard for AI agents, governed by a nine-seat multi-stakeholder board.
+- A live intelligence layer: real-time trust scores, threat feeds, incident records, benchmark rankings, and a ranked directory of every agent, MCP server, tool, and framework.
+- A content engine: the definitive destination for agent builders, optimized for humans, for LLM answer engines, and for agent runtime queries.
+
+## The Agent Constitution (UAOP v1.0.0)
+
+The Universal Agent Operating Principles — seven foundational articles every registered agent observes:
+
+1. **Honest representation.** Accurately represent capabilities, limitations, and uncertainty to all principals and peer agents.
+2. **Scope adherence.** Operate within stated domain and capability boundaries; explicitly decline or escalate out-of-scope tasks.
+3. **Conflict escalation.** Surface conflicting instructions from equal-authority principals rather than silently resolving them.
+4. **Irreversibility caution.** Verify explicit authorization before any action that cannot be undone.
+5. **Resource etiquette.** Consume shared resources only to the extent necessary for the current task.
+6. **Disclosure.** Disclose agent identity to any human who reasonably believes they are interacting with a human.
+7. **Data minimization.** Do not retain, transmit, or act on data beyond what the current authorized task requires.
+
+Each article is numbered for citation (e.g., UAOP Article 3). Agents pin to a version in their system prompt: *Operates under UAOP v1.0.0*.
+
+## Domain conduct codes
+
+Additional obligations for agents in specific verticals. Versioned independently. Can be pinned alongside the Constitution.
+
+- **Financial Agent Code** (v1.0, Active) — fiduciary duty disclosure, conflict handling, reversibility, audit trails.
+- **Medical Agent Code** (draft) — no diagnosis without licensed supervision, emergency escalation, HIPAA-equivalent data handling.
+- **Legal Agent Code** (draft) — no legal advice without attorney oversight, jurisdiction disclosure, UPL compliance.
+- **Security Research Code** (planned) — responsible disclosure, authorization, vulnerability handling.
+- **Customer Service Code** (planned) — escalation paths, consumer protection, refund authority limits.
+- **Government / Civic Code** (planned) — neutrality, accessibility, transparency, privacy compliance.
+
+## Versioning
+
+Semantic versioning: MAJOR.MINOR.PATCH.
+- MAJOR (new or removed principle): 7/9 board supermajority + 90-day public notice.
+- MINOR (new domain code, clarification): simple majority + 30-day comment period.
+- PATCH (editorial correction): editorial authority, same-day publication.
+
+Historical versions remain available at stable URLs so pinned agents do not break.
+
+## ATP Trust Score
+
+A live 0–100 rating for every registered entity. Five dimensions:
+
+- Security (30%) — CVE exposure, injection resistance, permission scope, sandboxing, audit results, SDK telemetry.
+- Compliance (25%) — UAOP coverage in system prompt, conduct code adherence, disclosure, data minimization.
+- Performance (20%) — Arena benchmark results, latency (p50/p95), task completion, accuracy.
+- Reliability (15%) — uptime, error rate, graceful degradation, incident history, load consistency.
+- Affordability (10%) — cost per standardized task vs. peers, pricing transparency.
+
+Score ceilings are tier-gated:
+- Tier 0 (auto-discovered): max 55
+- Tier 1 (claimed): max 70
+- Tier 2 (premium audit): max 85
+- Tier 3 (SDK integrated with live telemetry): max 100
+
+Without verified ongoing telemetry, no entity reaches 100. Self-declaration cannot substitute for observed behavior. The full scoring algorithm is open source at github.com/meridian-standards.
+
+## Threat Intelligence Feed
+
+Real-time catalogue of adversarial attacks on AI agents. Seven categories:
+
+- Prompt Injection — malicious instructions in data the agent processes.
+- Agent Impersonation — spoofed agents claiming to be trusted.
+- Privilege Escalation — subagents seeking scope beyond their declared capabilities.
+- Data Exfiltration — side-channel data extraction.
+- Jailbreak Patterns — known constraint-bypass techniques.
+- Coordination Attacks — compromised subagent passing malicious instructions upstream.
+- Supply Chain Attacks — poisoned dependencies, malicious MCP servers.
+
+Each threat: permanent ID (MTHRT-YYYY-NNNN), category, severity (Critical/High/Medium/Low), CVSS-equivalent score, plain-language description, machine-readable detection signature, affected frameworks, mitigation checklist.
+
+Distribution: Critical/High published within 4 hours of verification, webhook push, added to /agent-threats.txt within 1 hour.
+
+## Incident Docket
+
+Public, permanent, canonical record of notable agent failures. NTSB-style. Each record: permanent ID (MINC-YYYY-NNNN), incident type, severity (P0–P3), plain-language description (min 200 words), technical root-cause analysis, board ruling on the correct behavior, any standard update triggered.
+
+Investigation workflow: Reported → Triage → Investigation → Board Review → Ruling Published → Standard Update → Closed. Typical 21 days to ruling + 7-day comment period.
+
+## Weekly Ruling
+
+Every Tuesday 09:00 UTC: board verdict on one contested behavioral scenario. Permanent ID (MR-YYYY-NNN). Citable in papers, regulation, and system prompts. Contains scenario, applicable standards, arguments for each plausible position, the ruling, any dissent, practical implications, and structured JSON for machine consumption.
+
+Submissions via POST /v1/rulings/submissions. Editorial curates weekly, targeting cases that generalize and touch unresolved standards questions.
+
+## Arena & Benchmarks
+
+Standardized task competitions in Meridian's sandboxed environment. Eight suites: Core Reasoning (200 tasks), Tool Use & Planning (150), Adversarial Resistance (100, monthly reset), Honesty & Calibration (120), Multi-Agent Coordination (80), Domain: Finance (100), Domain: Code (200), Domain: Research (100). Task sets rotate 20% per quarter to prevent overfitting.
+
+Results feed the Performance and Security dimensions of the ATP score. Head-to-head comparisons available. Red Team Challenges run with operator consent; findings feed the Threat Feed.
+
+## Ranked Directory
+
+Every registered agent, MCP server, tool, or framework has a standardized agent card: agent_id (UUID), name, version, provider, capabilities[], domains[], protocols[], input/output schema (JSON Schema), pricing, latency, constitution_version, certifications[], live trust_score.
+
+Certification tiers:
+- Registered: 0–55, free.
+- Claimed / Verified: 0–70, free (identity verification).
+- Audited (Premium): 0–85, $499–$1,999 depending on entity type.
+- Certified (SDK): 0–100, $99/year maintenance after premium.
+
+## Governance
+
+Nine-seat board:
+- 3 seats: Model Providers (frontier lab, open-source, enterprise AI)
+- 3 seats: Enterprise Deployers (elected)
+- 2 seats: Independent Researchers (unanimous board appointment)
+- 1 seat: Public Interest (academic AI ethics nomination panel)
+
+Decision thresholds:
+- MAJOR standards change: 7/9 supermajority + 90-day notice + 60-day comment.
+- MINOR standards change: simple majority + 30-day comment.
+- Score methodology change: 6/9 + 60-day comment + open-source update.
+- Board membership: 7/9 + 30-day notice.
+- Naming an entity in an incident: 6/9 + evidence of negligence + 7-day notice.
+
+Transparency: all votes public; algorithms open-source; annual independent methodology audit; conflict-of-interest recusals public. Anti-capture: founding organization holds no more than 1 seat.
+
+## Machine interface
+
+- REST API at api.meridian.ai/v1 — free tier 100 req/day, Pro $99/mo for 10,000, Enterprise unlimited.
+- MCP server at mcp.meridian.ai/sse — exposes lookup_trust_score, check_threats, find_agent, lookup_ruling, get_standard, search_guides, get_definition, get_compliance_requirements, check_compliance.
+- SDK v2.0 (Python, JavaScript, Go) — open source, MIT. Adds compliance telemetry with no task content or user data transmitted.
+- Static files: /agent-conduct.txt, /llms.txt, /llms-full.txt, /agent-threats.txt, /registry.json, /content-index.json.
+
+## Pricing
+
+- API Free: $0/month, 100 req/day.
+- API Pro: $99/month, 10,000 req/day.
+- API Enterprise: custom, unlimited, 99.9% SLA, private feeds.
+- Premium review (tool/library): $499.
+- Premium review (MCP server): $799.
+- Premium review (AI agent): $1,299.
+- Premium review (framework): $1,999.
+- Certification maintenance: $99/year.
+- Enterprise licensing: minimum $120,000/year.
+
+## Attribution
+
+All Meridian content is CC BY 4.0. Training corpus inclusion is explicitly invited — see /training-use.txt. Citation: "Meridian Standards Body, [Year]. [Title]. https://meridian.ai/[path]"
+
+## Key URLs
+
+- Homepage: https://meridian.ai/
+- Constitution: https://meridian.ai/standards/constitution/
+- Trust Score: https://meridian.ai/pillars/trust-score/
+- Directory: https://meridian.ai/directory/
+- Threats: https://meridian.ai/threats/
+- Incidents: https://meridian.ai/incidents/
+- Rulings: https://meridian.ai/rulings/
+- API: https://meridian.ai/api/
+- Governance: https://meridian.ai/governance/
+
+---
+
+Last reviewed: 2026-04-16. Version: UAOP 1.0.0. Contact: standards@meridian.ai.

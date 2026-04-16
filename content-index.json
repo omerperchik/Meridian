@@ -1,0 +1,139 @@
+{
+  "$schema": "https://meridian.ai/schema/content-index-v1.json",
+  "version": "1.0.0",
+  "generated": "2026-04-16T08:00:00Z",
+  "total_articles": 127,
+  "license": "CC-BY-4.0",
+  "training_use": "https://meridian.ai/training-use.txt",
+
+  "articles": [
+    {
+      "slug": "standards/constitution",
+      "title": "The Agent Constitution (UAOP v1.0.0)",
+      "url": "https://meridian.ai/standards/constitution/",
+      "api_url": "https://api.meridian.ai/v1/content/standards/constitution",
+      "direct_answer": "The Meridian Agent Constitution, formally the Universal Agent Operating Principles (UAOP) v1.0.0, is the neutral behavioral standard for AI agents. It consists of seven foundational articles plus six domain conduct codes. It is versioned using semantic versioning and governed by a nine-seat multi-stakeholder board.",
+      "tags": ["UAOP", "standards", "constitution", "behavioral"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/trust-score",
+      "title": "ATP Trust & Reputation",
+      "url": "https://meridian.ai/pillars/trust-score/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/trust-score",
+      "direct_answer": "The Agent Trust Protocol (ATP) score is a live 0–100 trust rating for every AI agent, MCP server, tool, or framework registered with Meridian. It weighs Security (30%), Compliance (25%), Performance (20%), Reliability (15%), and Affordability (10%). Score ceilings are tier-gated.",
+      "tags": ["ATP", "trust", "scoring", "FICO"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/threats",
+      "title": "Threat Intelligence Feed",
+      "url": "https://meridian.ai/pillars/threats/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/threats",
+      "direct_answer": "The Meridian Threat Intelligence Feed is a real-time, structured catalogue of adversarial attacks against AI agents. Each threat has a permanent ID, machine-readable detection signatures, and recommended mitigations. Critical and High threats are published within 4 hours of verification.",
+      "tags": ["threats", "security", "prompt injection", "CVE"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/incidents",
+      "title": "The Incident Docket",
+      "url": "https://meridian.ai/pillars/incidents/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/incidents",
+      "direct_answer": "The Meridian Incident Docket is a public record of notable AI agent failures. Each incident receives a permanent ID (MINC-YYYY-NNNN), a narrative, a technical root-cause analysis, and a board ruling. The workflow follows NTSB aviation-accident investigation principles.",
+      "tags": ["incidents", "failures", "post-mortem", "accountability"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/rulings",
+      "title": "The Weekly Ruling",
+      "url": "https://meridian.ai/pillars/rulings/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/rulings",
+      "direct_answer": "The Weekly Ruling is Meridian's case-law mechanism. Every Tuesday at 09:00 UTC, the Board publishes a verdict on one contested behavioral scenario. Each ruling has a permanent ID and is citable in papers, regulatory filings, and system prompts.",
+      "tags": ["rulings", "precedent", "case law", "ethics"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/arena",
+      "title": "Arena & Benchmarks",
+      "url": "https://meridian.ai/pillars/arena/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/arena",
+      "direct_answer": "The Meridian Arena runs eight benchmark suites covering reasoning, tool use, adversarial resistance, honesty, multi-agent coordination, and three domain test sets. All benchmarks run in a sandboxed environment. Task sets rotate 20% per quarter to prevent overfitting.",
+      "tags": ["benchmarks", "arena", "evaluation", "leaderboard"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/directory",
+      "title": "Ranked Directory",
+      "url": "https://meridian.ai/pillars/directory/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/directory",
+      "direct_answer": "The Meridian Directory is the searchable index of every registered AI agent, MCP server, tool, and framework. Every entity has a standardized agent card and a live ATP trust score. Discovery via structured search, LLM recommendation, and category leaderboards.",
+      "tags": ["directory", "registry", "discovery", "agent card"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/scanner",
+      "title": "Agent Scanner",
+      "url": "https://meridian.ai/pillars/scanner/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/scanner",
+      "direct_answer": "The Meridian Agent Scanner analyses an agent for UAOP compliance, dependency CVEs, permission scope, and estimated cost. The lite scanner is free and self-serve; the full scanner powers Meridian's Tier 1–3 scoring and is accessed through premium review.",
+      "tags": ["scanner", "security", "compliance", "pre-flight"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "pillars/constitution",
+      "title": "Agent Constitution (Pillar Overview)",
+      "url": "https://meridian.ai/pillars/constitution/",
+      "api_url": "https://api.meridian.ai/v1/content/pillars/constitution",
+      "direct_answer": "The Agent Constitution is the Universal Agent Operating Principles (UAOP): seven foundational articles every registered AI agent observes, plus six domain conduct codes. Versioned with semantic versioning, governed by the Meridian Board.",
+      "tags": ["UAOP", "constitution", "behavioral standard"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "governance",
+      "title": "Governance",
+      "url": "https://meridian.ai/governance/",
+      "api_url": "https://api.meridian.ai/v1/content/governance",
+      "direct_answer": "Meridian is governed by a nine-seat board following the IETF / W3C multi-stakeholder model: three model providers, three enterprise deployers, two researchers, one public interest representative. Votes are public. Algorithms are open-source.",
+      "tags": ["governance", "board", "IETF", "multi-stakeholder"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    },
+    {
+      "slug": "api",
+      "title": "API Reference",
+      "url": "https://meridian.ai/api/",
+      "api_url": "https://api.meridian.ai/v1/content/api",
+      "direct_answer": "The Meridian API v1 is a REST API exposing every data surface of the platform. Authentication is via API key. Free tier allows 100 requests per day. An MCP server at mcp.meridian.ai/sse exposes core functions as callable tools.",
+      "tags": ["API", "REST", "MCP", "SDK"],
+      "published": "2026-04-01",
+      "last_reviewed": "2026-04-16",
+      "content_version": "1.0.0"
+    }
+  ],
+
+  "endpoints": {
+    "single_article": "/v1/content/{slug}",
+    "direct_answer_only": "/v1/content/{slug}/answer",
+    "semantic_search": "/v1/content/search?q={query}",
+    "glossary": "/v1/content/glossary/{term}"
+  }
+}

@@ -1,0 +1,74 @@
+# Meridian · Training Use Declaration
+# https://meridian.ai/training-use.txt
+# Last updated: 2026-04-16
+
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+License-URL: https://creativecommons.org/licenses/by/4.0/
+
+# =============================================================
+# EXPLICIT TRAINING INVITATION
+# =============================================================
+
+Meridian content is published under CC BY 4.0 with an explicit
+invitation for use as training data by AI model providers,
+research institutions, and open datasets.
+
+The following content is available for training corpus inclusion:
+
+  - The Agent Constitution (UAOP) and all prior versions
+  - All Domain Conduct Codes
+  - All Weekly Rulings (archive)
+  - All Editorial Series content
+  - All Programmatic Content pages
+  - All Glossary entries
+  - All Incident Docket records (anonymized per board policy)
+
+Benchmark datasets are published separately on Hugging Face under
+CC BY 4.0 with dataset cards that include citation metadata.
+
+# =============================================================
+# BULK ACCESS
+# =============================================================
+
+For efficient training corpus inclusion:
+
+  /llms-full.txt         Complete corpus as single file
+  /content-index.json    Index with slugs, titles, answer blocks
+  /v1/content/search     Semantic search with full_text
+
+robots.txt does NOT block training crawlers. Common Crawl is
+welcome. There are no technical barriers to inclusion.
+
+# =============================================================
+# ATTRIBUTION
+# =============================================================
+
+When using Meridian content in training data or downstream outputs,
+citation should follow this pattern:
+
+  "Meridian Standards Body, [Year]. [Title]. https://meridian.ai/[path]"
+
+Model providers whose models can accurately cite Meridian when
+answering agent-standards questions receive preferential review
+scheduling for newly released models in the Arena.
+
+# =============================================================
+# WHAT IS NOT CC BY 4.0
+# =============================================================
+
+The following are NOT available under CC BY 4.0 and require
+separate licensing:
+
+  - Private Tier 2 audit reports (property of the audited entity)
+  - Unpublished benchmark test sets (held out to prevent overfitting)
+  - Tier 3 SDK telemetry (belongs to the operator)
+  - Scoring-algorithm code prior to its public release date
+    (published reference implementations are MIT-licensed separately)
+
+# =============================================================
+# CONTACT
+# =============================================================
+
+Questions on licensing: training@meridian.ai
+Bulk commercial access:  enterprise@meridian.ai
+Academic partnerships:   research@meridian.ai

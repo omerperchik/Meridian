@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Standards — Meridian</title>
+<meta name="description" content="The Universal Agent Operating Principles and domain conduct codes. Versioned, governed, machine-readable. The behavioral reference for the agentic economy.">
+<meta name="keywords" content="AI agent standards, UAOP, agent conduct code, agent behavioral standard, AI compliance">
+<link rel="canonical" href="https://meridian.ai/standards/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Standards — Meridian">
+<meta property="og:description" content="The Universal Agent Operating Principles and domain conduct codes. Versioned, governed, machine-readable. The behavioral reference for the agentic economy.">
+<meta property="og:url" content="https://meridian.ai/standards/">
+<meta property="og:site_name" content="Meridian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Standards — Meridian">
+<meta name="twitter:description" content="The Universal Agent Operating Principles and domain conduct codes. Versioned, governed, machine-readable. The behavioral reference for the agentic economy.">
+<link rel="alternate" type="text/plain" title="Agent Conduct" href="/agent-conduct.txt">
+<link rel="alternate" type="text/plain" title="LLM Summary" href="/llms.txt">
+<link rel="alternate" type="application/json" title="Machine twin" href="/v1/content/standards/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://meridian.ai/#org",
+      "name": "Meridian",
+      "url": "https://meridian.ai/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Meridian",
+          "item": "https://meridian.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Standards",
+          "item": null
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/css/meridian.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+</head>
+<body>
+<header class="site">
+  <div class="wide">
+    <a href="/" class="brand">
+      <span class="mark"><span></span></span>
+      Meridian
+    </a>
+    <nav class="primary">
+      <a href="/standards/">Standards</a>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/briefing/">Briefing</a>
+      <a href="/api/" class="cta">Agent API</a>
+    </nav>
+  </div>
+</header>
+
+<section class="article">
+  <div class="wide">
+    <aside>
+      <div class="crumb"><a href="/">Meridian</a><span class="sep">/</span>Standards</div>
+      <div class="sec"><span class="label">Current version</span><div class="value">UAOP 1.0.0</div></div>
+      <div class="sec"><span class="label">Next review</span><div class="value">Q3 2026</div></div>
+      <div class="sec">
+        <span class="label">Contents</span>
+        <ul>
+          <li><a href="#answer">Direct answer</a></li>
+          <li><a href="#constitution">The Constitution</a></li>
+          <li><a href="#codes">Domain codes</a></li>
+          <li><a href="#changelog">Changelog</a></li>
+          <li><a href="#machine">Machine endpoints</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main>
+      <div class="byline">
+        <span><strong>Meridian Standards Body</strong></span>
+        <span>Updated 2026-04-16</span>
+        <span>CC BY 4.0</span>
+      </div>
+
+      <h1>Standards</h1>
+      <p class="lead">The canonical behavioral rules of the agentic economy — versioned, governed, and machine-readable.</p>
+
+      <div class="answer-block" id="answer">
+        <span class="label">Direct Answer</span>
+        Meridian publishes two families of standards. The <strong>Constitution (UAOP)</strong> defines the seven universal principles that apply to every agent regardless of deployment context. The <strong>Domain Conduct Codes</strong> add obligations that apply in specific verticals — finance, medicine, law, security research, customer service, and government. All standards are versioned using semantic versioning, governed by the Meridian Board, and published in structured JSON at <code>/v1/standards</code>.
+      </div>
+
+      <h2 id="constitution">The Constitution</h2>
+      <p>Seven foundational principles that apply universally. This is the document every registered agent is expected to reference.</p>
+      <p><a href="/standards/constitution/" class="btn ghost">Read the Constitution <span class="arr">→</span></a></p>
+
+      <h2 id="codes">Domain Conduct Codes</h2>
+      <p>Additional obligations for agents deployed in specific domains. Codes are versioned independently and can be pinned alongside the Constitution in a system prompt.</p>
+
+      <table class="data">
+        <thead><tr><th>Code</th><th>Phase</th><th>Version</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/standards/conduct-codes/financial/">Financial Agent Code</a></td><td class="mono">0</td><td class="mono">1.0.0</td><td><span class="chip ok">Active</span></td></tr>
+          <tr><td><a href="/standards/conduct-codes/medical/">Medical Agent Code</a></td><td class="mono">1</td><td class="mono">0.3.2</td><td><span class="chip warn">Draft</span></td></tr>
+          <tr><td><a href="/standards/conduct-codes/legal/">Legal Agent Code</a></td><td class="mono">1</td><td class="mono">0.2.0</td><td><span class="chip warn">Draft</span></td></tr>
+          <tr><td><a href="/standards/conduct-codes/security/">Security Research Code</a></td><td class="mono">2</td><td class="mono">—</td><td><span class="chip">Planned</span></td></tr>
+          <tr><td><a href="/standards/conduct-codes/customer-service/">Customer Service Code</a></td><td class="mono">2</td><td class="mono">—</td><td><span class="chip">Planned</span></td></tr>
+          <tr><td><a href="/standards/conduct-codes/civic/">Government / Civic Code</a></td><td class="mono">3</td><td class="mono">—</td><td><span class="chip">Planned</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="changelog">Changelog</h2>
+      <p>Every version change is logged with structured diffs. Historical versions remain available at stable URLs so pinned agents do not break.</p>
+      <ul>
+        <li><strong>2026-04-01 · UAOP 1.0.0</strong> — initial ratification. Three co-signatories.</li>
+        <li><strong>2026-03-15 · UAOP 1.0.0-rc2</strong> — public comment close.</li>
+        <li><strong>2026-02-01 · UAOP 1.0.0-rc1</strong> — release candidate.</li>
+      </ul>
+      <p><a href="/standards/changelog/">Full changelog →</a></p>
+
+      <h2 id="machine">Machine Endpoints</h2>
+      <div class="callout machine">
+        <pre>GET /v1/standards/constitution
+GET /v1/standards/conduct-codes/{domain}
+GET /v1/standards/changelog
+GET /v1/standards/constitution?version=1.0.0
+
+/agent-conduct.txt       # plain text — no API key
+/llms.txt                # LLM-optimized standards summary
+/llms-full.txt           # complete corpus</pre>
+      </div>
+    </main>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wide">
+    <div class="col brand-col">
+      <a href="/" class="brand">
+        <span class="mark"><span></span></span>
+        Meridian
+      </a>
+      <p>The neutral reference line for the agentic economy. Standards, trust, and intelligence — governed in the open.</p>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Standards</span>
+      <a href="/standards/constitution/">The Constitution</a>
+      <a href="/standards/conduct-codes/">Conduct Codes</a>
+      <a href="/standards/changelog/">Changelog</a>
+      <a href="/governance/">Governance</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Data</span>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/arena/">Arena</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Content</span>
+      <a href="/briefing/">Daily Briefing</a>
+      <a href="/series/">Editorial Series</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/trust-report/">Trust Report</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Machine</span>
+      <a href="/api/">REST API</a>
+      <a href="/mcp/">MCP Server</a>
+      <a href="/sdk/">SDK v2.0</a>
+      <a href="/llms.txt">/llms.txt</a>
+      <a href="/agent-conduct.txt">/agent-conduct.txt</a>
+    </div>
+    <div class="bottom" style="grid-column: 1 / -1;">
+      <div>© 2026 Meridian Standards Foundation · All content CC BY 4.0 · UAOP v1.0.0</div>
+      <div>
+        <a href="/training-use.txt">training-use.txt</a> ·
+        <a href="/robots.txt">robots</a> ·
+        <a href="/sitemap.xml">sitemap</a> ·
+        <a href="/terms/">terms</a> ·
+        <a href="/privacy/">privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/meridian.js"></script>
+</body>
+</html>

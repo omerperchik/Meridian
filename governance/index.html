@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Governance — Meridian</title>
+<meta name="description" content="Meridian's nine-seat multi-stakeholder board follows the IETF / W3C model. Public votes, open-source algorithms, annual independent audits, anti-capture provisions.">
+<meta name="keywords" content="Meridian governance, AI standards governance, multi-stakeholder AI, AI agent governance board, IETF AI">
+<link rel="canonical" href="https://meridian.ai/governance/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Governance — Meridian">
+<meta property="og:description" content="Meridian's nine-seat multi-stakeholder board follows the IETF / W3C model. Public votes, open-source algorithms, annual independent audits, anti-capture provisions.">
+<meta property="og:url" content="https://meridian.ai/governance/">
+<meta property="og:site_name" content="Meridian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Governance — Meridian">
+<meta name="twitter:description" content="Meridian's nine-seat multi-stakeholder board follows the IETF / W3C model. Public votes, open-source algorithms, annual independent audits, anti-capture provisions.">
+<link rel="alternate" type="text/plain" title="Agent Conduct" href="/agent-conduct.txt">
+<link rel="alternate" type="text/plain" title="LLM Summary" href="/llms.txt">
+<link rel="alternate" type="application/json" title="Machine twin" href="/v1/content/governance/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://meridian.ai/#org",
+      "name": "Meridian",
+      "url": "https://meridian.ai/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Meridian",
+          "item": "https://meridian.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Governance",
+          "item": null
+        }
+      ]
+    },
+    {
+      "@type": "TechArticle",
+      "headline": "Governance \u2014 Meridian",
+      "description": "Meridian's nine-seat multi-stakeholder board follows the IETF / W3C model. Public votes, open-source algorithms, annual independent audits, anti-capture provisions.",
+      "author": {
+        "@type": "Organization",
+        "@id": "https://meridian.ai/#org"
+      },
+      "publisher": {
+        "@id": "https://meridian.ai/#org"
+      },
+      "datePublished": "2026-04-01",
+      "dateModified": "2026-04-16",
+      "mainEntityOfPage": "https://meridian.ai/governance/",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who governs Meridian?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A nine-seat board: three model providers, three enterprise deployers, two independent researchers, one public interest representative. Votes are public. Major changes require 7/9 supermajority."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can one organization control Meridian?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The founding organization holds no more than one seat. Constituency balance prevents any bloc from unilaterally passing major changes. All votes are public."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Meridian prevent commercial capture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Public votes, open-source scoring algorithms, annual independent methodology audits, conflict-of-interest recusal rules, and editorial independence."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="/css/meridian.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+</head>
+<body>
+<header class="site">
+  <div class="wide">
+    <a href="/" class="brand">
+      <span class="mark"><span></span></span>
+      Meridian
+    </a>
+    <nav class="primary">
+      <a href="/standards/">Standards</a>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/briefing/">Briefing</a>
+      <a href="/api/" class="cta">Agent API</a>
+    </nav>
+  </div>
+</header>
+
+<section class="article">
+  <div class="wide">
+    <aside>
+      <div class="crumb"><a href="/">Meridian</a><span class="sep">/</span>Governance</div>
+      <div class="sec"><span class="label">Structure</span><div class="value">9-seat board</div></div>
+      <div class="sec"><span class="label">Model</span><div class="value">IETF / W3C pattern</div></div>
+      <div class="sec">
+        <span class="label">Contents</span>
+        <ul>
+          <li><a href="#answer">Direct answer</a></li>
+          <li><a href="#board">The board</a></li>
+          <li><a href="#thresholds">Decision thresholds</a></li>
+          <li><a href="#transparency">Transparency</a></li>
+          <li><a href="#anti-capture">Anti-capture</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main>
+      <div class="byline">
+        <span><strong>Meridian Governance Charter</strong></span>
+        <span>Ratified 2026-04-01</span>
+        <span>v1.0</span>
+        <span>CC BY 4.0</span>
+      </div>
+      <h1>Governance</h1>
+      <p class="lead">The governance structure is the moat. Meridian's authority derives from neutrality — and neutrality requires that no single actor can control its standards, scores, or editorial decisions.</p>
+      <div class="answer-block" id="answer">
+        <span class="label">Direct Answer</span>
+        Meridian is governed by a <strong>nine-seat board</strong> following the IETF / W3C multi-stakeholder model. Three seats are held by model providers, three by enterprise deployers, two by independent researchers, and one by a public interest representative. All board votes are public. The full scoring algorithm is open-source. The founding organization holds no more than one seat. Major standards changes require a 7/9 supermajority plus a 90-day public notice period.
+      </div>
+
+      <h2 id="board">The Meridian Board</h2>
+      <table class="data">
+        <thead><tr><th>Seats</th><th>Constituency</th><th>Selection</th><th>Term</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">3</td><td><strong>Model Providers</strong></td><td>Invited: one frontier lab, one open-source, one enterprise AI provider</td><td>2 years, staggered</td></tr>
+          <tr><td class="mono">3</td><td><strong>Enterprise Deployers</strong></td><td>Elected by enterprise-tier members (one vote per organization)</td><td>2 years, staggered</td></tr>
+          <tr><td class="mono">2</td><td><strong>Independent Researchers</strong></td><td>Appointed by existing board &mdash; unanimous vote required</td><td>3 years, staggered</td></tr>
+          <tr><td class="mono">1</td><td><strong>Public Interest</strong></td><td>Civil society representative, nominated by academic AI ethics centers</td><td>3 years</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="thresholds">Decision thresholds</h2>
+      <table class="data">
+        <thead><tr><th>Decision type</th><th>Vote</th><th>Process</th></tr></thead>
+        <tbody>
+          <tr><td><strong>MAJOR standards change</strong><br><span class="small">new or removed UAOP principle</span></td><td class="mono">7/9</td><td>90-day public notice + 60-day comment + supermajority</td></tr>
+          <tr><td><strong>MINOR standards change</strong><br><span class="small">new conduct code, clarification</span></td><td class="mono">5/9</td><td>30-day comment + simple majority</td></tr>
+          <tr><td><strong>Score methodology change</strong></td><td class="mono">6/9</td><td>60-day comment + open-source implementation update</td></tr>
+          <tr><td><strong>Board membership change</strong></td><td class="mono">7/9</td><td>30-day notice; replacement from same constituency</td></tr>
+          <tr><td><strong>Entity naming in incident record</strong></td><td class="mono">6/9</td><td>Evidence of negligence; 7-day prior notice</td></tr>
+          <tr><td><strong>PATCH (editorial correction)</strong></td><td>Editorial</td><td>Same-day publication; board notified</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="transparency">Transparency provisions</h2>
+      <ul>
+        <li><strong>Public votes.</strong> Every board vote &mdash; member, vote, rationale &mdash; published within 24 hours.</li>
+        <li><strong>Open-source algorithms.</strong> Full ATP scoring implementation published on GitHub. Anyone can reproduce their score.</li>
+        <li><strong>Independent audit.</strong> Annual scoring methodology and outcomes audit by an external academic institution.</li>
+        <li><strong>Conflict of interest.</strong> Board members must recuse from any decision affecting entities they operate, invest in, or have material interest in. Recusals are public.</li>
+      </ul>
+
+      <h2 id="anti-capture">Anti-capture provisions</h2>
+      <ul>
+        <li><strong>Founding organization limit.</strong> No more than one board seat.</li>
+        <li><strong>Removal for inactivity.</strong> 7/9 vote removes any member with &gt;50% missed votes in 12 months.</li>
+        <li><strong>Removal for conflict.</strong> Sustained conflict-of-interest violations trigger removal.</li>
+        <li><strong>Constituency replacement.</strong> Vacated seats must be filled from the same constituency.</li>
+        <li><strong>Editorial independence.</strong> The editorial team reports to the Editor-in-Chief, who reports to the board as a whole &mdash; not to any individual member.</li>
+      </ul>
+
+      <h2 id="faq">FAQ</h2>
+      <div class="faq">
+        <details open>
+          <summary>Who funds Meridian?</summary>
+          <p>Revenue comes from six streams: API access, premium reviews, enterprise licensing, certification maintenance, arena sponsorships, and training data licensing. No single funder provides a dominant share. Financial statements are published annually.</p>
+        </details>
+        <details>
+          <summary>Can a model provider control the standards?</summary>
+          <p>No. Model providers hold 3 of 9 seats. Major changes require 7/9 supermajority. Enterprise deployers, researchers, and the public interest seat form a majority bloc independent of model providers.</p>
+        </details>
+        <details>
+          <summary>What stops commercial pressure from eroding neutrality?</summary>
+          <p>Public votes, open-source algorithms, annual independent audits, and the rule that premium reviews buy access to deeper analysis &mdash; not better scores for equal performance.</p>
+        </details>
+        <details>
+          <summary>How are researchers selected?</summary>
+          <p>Researcher seats require unanimous vote of existing board members. Public interest seat is nominated by a panel of academic AI ethics centers, not the board itself.</p>
+        </details>
+        <details>
+          <summary>Is Meridian trying to replace regulation?</summary>
+          <p>No. Meridian is industry infrastructure. Its goal is to be the standard regulators build from, not against. The public interest seat and regulatory submission program position Meridian as an industry input into regulation.</p>
+        </details>
+      </div>
+    </main>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wide">
+    <div class="col brand-col">
+      <a href="/" class="brand">
+        <span class="mark"><span></span></span>
+        Meridian
+      </a>
+      <p>The neutral reference line for the agentic economy. Standards, trust, and intelligence — governed in the open.</p>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Standards</span>
+      <a href="/standards/constitution/">The Constitution</a>
+      <a href="/standards/conduct-codes/">Conduct Codes</a>
+      <a href="/standards/changelog/">Changelog</a>
+      <a href="/governance/">Governance</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Data</span>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/arena/">Arena</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Content</span>
+      <a href="/briefing/">Daily Briefing</a>
+      <a href="/series/">Editorial Series</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/trust-report/">Trust Report</a>
+    </div>
+    <div class="col">
+      <span class="eyebrow">Machine</span>
+      <a href="/api/">REST API</a>
+      <a href="/mcp/">MCP Server</a>
+      <a href="/sdk/">SDK v2.0</a>
+      <a href="/llms.txt">/llms.txt</a>
+      <a href="/agent-conduct.txt">/agent-conduct.txt</a>
+    </div>
+    <div class="bottom" style="grid-column: 1 / -1;">
+      <div>© 2026 Meridian Standards Foundation · All content CC BY 4.0 · UAOP v1.0.0</div>
+      <div>
+        <a href="/training-use.txt">training-use.txt</a> ·
+        <a href="/robots.txt">robots</a> ·
+        <a href="/sitemap.xml">sitemap</a> ·
+        <a href="/terms/">terms</a> ·
+        <a href="/privacy/">privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/js/meridian.js"></script>
+</body>
+</html>

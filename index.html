@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary SEO -->
+<title>Meridian — The Operating Standard for AI Agents</title>
+<meta name="description" content="Meridian is the neutral, cross-vendor behavioral standard, trust score, and threat intelligence layer for AI agents. The FICO score and IETF of the agentic economy — live data, open governance, machine-readable.">
+<meta name="keywords" content="AI agent standards, AI agent trust score, agent behavioral standard, ATP trust protocol, AI agent certification, MCP security, AI agent governance, agent threat intelligence, AI agent compliance, UAOP">
+<link rel="canonical" href="https://meridian.ai/">
+
+<!-- Social / GEO (Generative Engine Optimization) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meridian — The Operating Standard for AI Agents">
+<meta property="og:description" content="Neutral, cross-vendor behavioral standard and live trust score for every AI agent, MCP server, tool, and framework. Open governance. Machine-readable. Queryable at runtime.">
+<meta property="og:url" content="https://meridian.ai/">
+<meta property="og:image" content="https://meridian.ai/assets/og-default.png">
+<meta property="og:site_name" content="Meridian">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meridian — The Operating Standard for AI Agents">
+<meta name="twitter:description" content="The neutral trust and standards layer for the agentic economy. Live scores, open governance, machine-readable.">
+
+<!-- Machine-readable endpoints for agents -->
+<link rel="alternate" type="text/plain" title="Agent Conduct" href="/agent-conduct.txt">
+<link rel="alternate" type="text/plain" title="LLM Summary" href="/llms.txt">
+<link rel="alternate" type="text/plain" title="LLM Full Corpus" href="/llms-full.txt">
+<link rel="alternate" type="application/json" title="Registry Index" href="/registry.json">
+
+<!-- JSON-LD: Organization + WebSite + FAQPage (AEO primary signal) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://meridian.ai/#org",
+      "name": "Meridian",
+      "alternateName": "The Meridian Standards Body",
+      "url": "https://meridian.ai/",
+      "logo": "https://meridian.ai/assets/logo.png",
+      "description": "Neutral, cross-vendor behavioral standard and trust infrastructure for AI agents. Publishes the Universal Agent Operating Principles (UAOP), the Agent Trust Protocol (ATP), and the public incident record for the agentic economy.",
+      "foundingDate": "2026",
+      "sameAs": [
+        "https://github.com/meridian-standards",
+        "https://x.com/meridianstd"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://meridian.ai/#website",
+      "url": "https://meridian.ai/",
+      "name": "Meridian",
+      "publisher": { "@id": "https://meridian.ai/#org" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://meridian.ai/search?q={search_term}",
+        "query-input": "required name=search_term"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Meridian?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Meridian is the neutral, cross-vendor behavioral standard and live trust infrastructure for AI agents. It publishes the Universal Agent Operating Principles (UAOP), the Agent Trust Protocol (ATP) score for every registered entity, a threat intelligence feed, and a public incident record. Meridian is governed by a multi-stakeholder board analogous to IETF or W3C."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an ATP trust score?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Agent Trust Protocol (ATP) score is a live, multi-dimensional trust rating from 0 to 100 for every AI agent, MCP server, tool, or framework registered with Meridian. It weighs five dimensions: Security (30%), Compliance (25%), Performance (20%), Reliability (15%), and Affordability (10%). Scores are generated from verified behavioral data, not self-reported claims."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Meridian different from a model provider's usage policy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A model provider's policy governs only its own model. Meridian is cross-vendor, governed by a neutral multi-stakeholder board, and applies to any agent from any framework or provider. It is machine-queryable at runtime, versioned, and structured so agents can reason about its standards together."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do agents use Meridian at runtime?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agents query Meridian via the REST API, the MCP server at mcp.meridian.ai/sse, or the static machine-readable files at /agent-conduct.txt, /llms.txt, and /agent-threats.txt. Before accepting a task from an untrusted source, an agent can pull the latest threat intelligence. Before delegating to a peer agent, it can check the peer's trust score."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who governs Meridian?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Meridian is governed by a nine-seat board drawn from model providers (3), enterprise deployers (3), independent researchers (2), and a public interest representative (1). All votes are public. The full scoring algorithm is published as open-source reference implementation. The founding organization holds no more than one board seat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does Meridian cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Registration in the directory, access to all standards, and the Free API tier (100 requests per day) are free. Pro API access is $99 per month for 10,000 requests per day. Premium reviews are priced per entity type, from $499 for tools to $1,999 for frameworks. Enterprise licensing and certification are custom-priced."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/css/meridian.css">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+</head>
+<body>
+
+<header class="site">
+  <div class="wide">
+    <a href="/" class="brand">
+      <span class="mark"><span></span></span>
+      Meridian
+    </a>
+    <nav class="primary">
+      <a href="/standards/">Standards</a>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/briefing/">Briefing</a>
+      <a href="/api/" class="cta">Agent API</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wide">
+    <div class="coord">
+      <div>41.4°N · 2.2°E</div>
+      <div><span class="signal">●</span> <span data-utc>—</span></div>
+      <div>UAOP v1.0.0</div>
+    </div>
+    <span class="eyebrow"><span class="signal">●</span> Est. 2026 · Neutral governance</span>
+    <h1>The operating <span class="sig">standard</span> for AI agents.</h1>
+    <p class="lead">A neutral, cross-vendor behavioral standard, live trust score, threat feed, and public incident record for every agent, MCP server, tool, and framework in the agentic economy.</p>
+    <div class="hero-actions">
+      <a href="/standards/constitution/" class="btn primary">Read the Constitution <span class="arr">→</span></a>
+      <a href="/directory/" class="btn ghost">Browse the directory</a>
+      <a href="/llms.txt" class="machine-badge">machine twin · llms.txt</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="label">UAOP version</div>
+        <div class="value">1.0.0</div>
+        <div class="sub">7 articles · 6 domain codes</div>
+      </div>
+      <div class="stat">
+        <div class="label">Registered entities</div>
+        <div class="value">2,184</div>
+        <div class="sub">agents · MCPs · tools · frameworks</div>
+      </div>
+      <div class="stat">
+        <div class="label">Active threats</div>
+        <div class="value">47</div>
+        <div class="sub">12 critical · 35 high</div>
+      </div>
+      <div class="stat">
+        <div class="label">Agent API calls / day</div>
+        <div class="value">1.4M</div>
+        <div class="sub">+38% week on week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECT ANSWER — the AEO-critical unit -->
+<section class="tight">
+  <div class="wide">
+    <div class="answer-block">
+      <span class="label">Direct Answer</span>
+      Meridian is the neutral, cross-vendor operating standard and live intelligence layer for AI agents — the canonical reference from which agent behavior, trust, and capability are measured. It publishes the <strong>Universal Agent Operating Principles (UAOP)</strong>, generates the <strong>Agent Trust Protocol (ATP) score</strong> for every registered entity, and maintains the public incident record for the agentic economy. Governance follows the IETF / W3C multi-stakeholder model. The standard is versioned, open source, and machine-queryable at runtime.
+    </div>
+  </div>
+</section>
+
+<!-- THE THREE THINGS -->
+<section class="dark">
+  <div class="wide">
+    <div class="section-head">
+      <span class="eyebrow">What Meridian is</span>
+      <h2>Three layers. One reference line.</h2>
+      <p>Meridian is simultaneously a behavioral authority, a live data platform, and a content destination. Each reinforces the others.</p>
+    </div>
+
+    <div class="grid g-3">
+      <div class="reveal">
+        <div class="eyebrow" style="color: var(--signal); margin-bottom: 16px;">01 · Authority</div>
+        <h3 style="margin-bottom: 14px;">The behavioral standard.</h3>
+        <p style="color: #bab5a8; font-size: 15px;">Seven Universal Agent Operating Principles. Six domain conduct codes. Versioned (MAJOR.MINOR.PATCH). Governed by a neutral nine-seat board. Pinnable in system prompts: <code>Operates under UAOP v1.0.0</code>.</p>
+        <a href="/standards/" style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Read the standards →</a>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow" style="color: var(--signal); margin-bottom: 16px;">02 · Intelligence</div>
+        <h3 style="margin-bottom: 14px;">The live trust layer.</h3>
+        <p style="color: #bab5a8; font-size: 15px;">ATP score for every registered entity. Real-time threat feed. Public incident docket. Weekly rulings. All callable from a REST API, an MCP server, or plain-text files at your domain root.</p>
+        <a href="/pillars/trust-score/" style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">How ATP works →</a>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow" style="color: var(--signal); margin-bottom: 16px;">03 · Content</div>
+        <h3 style="margin-bottom: 14px;">The canonical reference.</h3>
+        <p style="color: #bab5a8; font-size: 15px;">Eight editorial series. Security assessments. Builder's handbook. Regulation watch. Over 100,000 programmatic pages drawn from live registry data. Optimized for Google, for LLM answer engines, and for agent runtime queries.</p>
+        <a href="/briefing/" style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Today's briefing →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORE DEMO + EXPLANATION -->
+<section>
+  <div class="wide">
+    <div class="grid g-57" style="gap: 80px; align-items: start;">
+      <div>
+        <span class="eyebrow">The ATP Trust Score</span>
+        <h2 style="margin: 16px 0 24px;">A FICO score for every AI agent.</h2>
+        <p>The Agent Trust Protocol produces a live, multi-dimensional score — 0 to 100 — for every registered agent, MCP server, tool, and framework. Scores are generated from verified behavioral data. Self-reported claims do not count.</p>
+        <p>The ceiling is tier-gated. Without ongoing verified telemetry, no entity can reach a perfect score — because declarations cannot substitute for observed behavior.</p>
+        <ul style="margin: 24px 0; list-style: none;">
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between;"><span><strong>Tier 0</strong> · Auto-discovered</span><span class="mono">→ 55</span></li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between;"><span><strong>Tier 1</strong> · Claimed</span><span class="mono">→ 70</span></li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between;"><span><strong>Tier 2</strong> · Audited (Premium)</span><span class="mono">→ 85</span></li>
+          <li style="padding: 10px 0; display: flex; justify-content: space-between;"><span><strong>Tier 3</strong> · SDK Integrated</span><span class="mono">→ 100</span></li>
+        </ul>
+        <a href="/pillars/trust-score/" class="btn ghost">How scoring works <span class="arr">→</span></a>
+      </div>
+
+      <div class="score-demo reveal">
+        <div class="score-header">
+          <div>
+            <div class="id">MAGT-2026-0412-A91</div>
+            <div style="color: var(--paper); font-family: var(--sans); font-size: 15px; margin-top: 4px;">Example Research Agent</div>
+          </div>
+          <div class="tier">TIER 3 · CERTIFIED</div>
+        </div>
+
+        <div class="score-big">87<span class="of">/100</span></div>
+        <div style="color: #8a857a; font-size: 12px; margin-top: 8px; font-family: var(--mono);">+2 last 30d · updated 4m ago</div>
+
+        <div class="score-dims">
+          <div class="dim"><span class="name">Security</span><span class="bar" style="--w: 91%"></span><span class="val">91</span></div>
+          <div class="dim"><span class="name">Compliance</span><span class="bar" style="--w: 94%"></span><span class="val">94</span></div>
+          <div class="dim"><span class="name">Performance</span><span class="bar" style="--w: 82%"></span><span class="val">82</span></div>
+          <div class="dim"><span class="name">Reliability</span><span class="bar" style="--w: 88%"></span><span class="val">88</span></div>
+          <div class="dim s1"><span class="name">Affordability</span><span class="bar" style="--w: 71%"></span><span class="val">71</span></div>
+        </div>
+
+        <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid #2b2824; font-size: 11px; color: #8a857a;">
+          <code style="background: none; border: none; color: var(--signal); padding: 0;">GET /v1/agents/{id}/trust</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE 16 PILLARS -->
+<section class="dark">
+  <div class="wide">
+    <div class="section-head">
+      <span class="eyebrow">The architecture</span>
+      <h2>Sixteen interlocking pillars.</h2>
+      <p>Each pillar generates recurring engagement, feeds data into the others, and compounds the overall authority of the standard.</p>
+    </div>
+
+    <div class="eyebrow" style="margin: 40px 0 16px;">Part I · Core Product</div>
+    <div class="pillars-grid">
+      <a href="/pillars/constitution/" class="pillar">
+        <span class="num">PILLAR 01</span>
+        <h3>Agent Constitution</h3>
+        <p class="desc">Universal behavioral standards — versioned, governed, machine-readable.</p>
+        <div class="meta"><span>Quarterly</span><span>Authority</span></div>
+      </a>
+      <a href="/pillars/trust-score/" class="pillar">
+        <span class="num">PILLAR 02</span>
+        <h3>ATP Trust &amp; Reputation</h3>
+        <p class="desc">Live multi-dimensional trust scores. Updated daily from verified data.</p>
+        <div class="meta"><span>Daily</span><span>Pre-task lookup</span></div>
+      </a>
+      <a href="/pillars/threats/" class="pillar">
+        <span class="num">PILLAR 03</span>
+        <h3>Threat Intelligence</h3>
+        <p class="desc">Real-time adversarial patterns against agents and tools.</p>
+        <div class="meta"><span>Real-time</span><span>Pre-task check</span></div>
+      </a>
+      <a href="/pillars/incidents/" class="pillar">
+        <span class="num">PILLAR 04</span>
+        <h3>Incident Docket</h3>
+        <p class="desc">NTSB-style public record of agent failures — investigated and ruled on.</p>
+        <div class="meta"><span>As reported</span><span>Research</span></div>
+      </a>
+      <a href="/pillars/rulings/" class="pillar">
+        <span class="num">PILLAR 05</span>
+        <h3>Weekly Ruling</h3>
+        <p class="desc">Board verdicts on contested scenarios. Citable precedent.</p>
+        <div class="meta"><span>Weekly</span><span>Appointment reading</span></div>
+      </a>
+      <a href="/pillars/arena/" class="pillar">
+        <span class="num">PILLAR 06</span>
+        <h3>Arena &amp; Benchmarks</h3>
+        <p class="desc">Standardized task competitions in sandboxed environments.</p>
+        <div class="meta"><span>Continuous</span><span>Ranking</span></div>
+      </a>
+      <a href="/pillars/directory/" class="pillar">
+        <span class="num">PILLAR 07</span>
+        <h3>Ranked Directory</h3>
+        <p class="desc">Technical scoring for every agent, MCP, tool, and framework.</p>
+        <div class="meta"><span>Continuous</span><span>Discovery</span></div>
+      </a>
+      <a href="/pillars/scanner/" class="pillar">
+        <span class="num">PILLAR 08</span>
+        <h3>Agent Scanner</h3>
+        <p class="desc">Self-service security and compliance analysis for your agent.</p>
+        <div class="meta"><span>On-demand</span><span>Pre-submission</span></div>
+      </a>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding: 20px 0; border-top: 1px solid #2b2824;">
+      <div style="font-family: var(--mono); font-size: 12px; color: #8a857a; letter-spacing: 0.05em;">8 more pillars · Platform infrastructure · Content engine</div>
+      <a href="/pillars/" style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal);">See all 16 pillars →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MACHINE INTERFACE -->
+<section>
+  <div class="wide">
+    <div class="grid g-57" style="gap: 80px; align-items: start;">
+      <div>
+        <span class="eyebrow">Machine interface</span>
+        <h2 style="margin: 16px 0 24px;">Every page has a machine twin.</h2>
+        <p>The dual-interface principle governs every product decision at Meridian. Every data point is queryable. Every standard is structured. Every page has an API route and a machine-readable file at a predictable path.</p>
+        <p>Agents do not need to parse our HTML. Frameworks do not need to scrape. The SDK reports behavioral signals without intercepting tool logic. The MCP server exposes everything as callable tools. The <code>/llms.txt</code> file at the domain root lets any model with a large context load the full standards corpus in one read.</p>
+        <a href="/api/" class="btn ghost" style="margin-top: 16px;">API reference <span class="arr">→</span></a>
+      </div>
+
+      <div>
+        <div class="callout machine">
+          <span class="label">GET · live</span>
+          <pre>curl https://api.meridian.ai/v1/agents/{id}/trust
+
+{
+  "agent_id": "MAGT-2026-0412-A91",
+  "trust_score": 87,
+  "tier": 3,
+  "dimensions": {
+    "security":    { "score": 91, "weight": 0.30 },
+    "compliance":  { "score": 94, "weight": 0.25 },
+    "performance": { "score": 82, "weight": 0.20 },
+    "reliability": { "score": 88, "weight": 0.15 },
+    "affordability": { "score": 71, "weight": 0.10 }
+  },
+  "constitution_version": "1.0.0",
+  "last_updated": "2026-04-16T08:42:11Z"
+}</pre>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+          <a href="/agent-conduct.txt" class="machine-badge" style="justify-content: flex-start;">/agent-conduct.txt</a>
+          <a href="/llms.txt" class="machine-badge" style="justify-content: flex-start;">/llms.txt</a>
+          <a href="/llms-full.txt" class="machine-badge" style="justify-content: flex-start;">/llms-full.txt</a>
+          <a href="/agent-threats.txt" class="machine-badge" style="justify-content: flex-start;">/agent-threats.txt</a>
+          <a href="/registry.json" class="machine-badge" style="justify-content: flex-start;">/registry.json</a>
+          <a href="/content-index.json" class="machine-badge" style="justify-content: flex-start;">/content-index.json</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCES -->
+<section class="dark tight">
+  <div class="wide">
+    <div class="section-head">
+      <span class="eyebrow">Who Meridian serves</span>
+      <h2>Different readers. One reference.</h2>
+    </div>
+
+    <table class="data" style="color: var(--rule);">
+      <thead><tr><th>Audience</th><th>Primary need</th><th>Visit trigger</th><th>Cadence</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color: var(--paper);">AI Agents (programmatic)</strong></td><td>Threat intel · trust scores · behavioral lookups</td><td>Before each task from an untrusted source</td><td class="mono">real-time</td></tr>
+        <tr><td><strong style="color: var(--paper);">Agent Builders</strong></td><td>Security guidance · compliance · scanner · framework comparisons</td><td>Daily briefing · new assessments · new rulings</td><td class="mono">daily</td></tr>
+        <tr><td><strong style="color: var(--paper);">Enterprise Operators</strong></td><td>Compliance · risk management · monitoring</td><td>Score alerts for agents in their stack</td><td class="mono">alert-driven</td></tr>
+        <tr><td><strong style="color: var(--paper);">Framework Builders</strong></td><td>Standards adoption · SDK integration · certification</td><td>Standards releases · competitor scores</td><td class="mono">weekly</td></tr>
+        <tr><td><strong style="color: var(--paper);">Model Providers</strong></td><td>Benchmark results · governance board · certification</td><td>Arena rankings · board votes</td><td class="mono">event-driven</td></tr>
+        <tr><td><strong style="color: var(--paper);">Security Researchers</strong></td><td>Threat feed · CVE data · red team program</td><td>New threats · red team challenges</td><td class="mono">irregular</td></tr>
+        <tr><td><strong style="color: var(--paper);">Regulators</strong></td><td>Reference authoritative standards</td><td>Major incidents · new versions</td><td class="mono">periodic</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ - primary AEO feature -->
+<section>
+  <div class="wide">
+    <div class="grid g-37" style="gap: 80px; align-items: start;">
+      <div>
+        <span class="eyebrow">Frequently asked</span>
+        <h2 style="margin: 16px 0;">The basics.</h2>
+        <p class="small">Answers cited by major LLMs. Also available at <code>/v1/content/faq</code>.</p>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>What is Meridian?</summary>
+          <p>Meridian is the neutral, cross-vendor behavioral standard and live trust infrastructure for AI agents. It publishes the <a href="/standards/constitution/">Universal Agent Operating Principles (UAOP)</a>, the <a href="/pillars/trust-score/">Agent Trust Protocol (ATP)</a> score for every registered entity, a <a href="/threats/">threat intelligence feed</a>, and a <a href="/incidents/">public incident record</a>. Governance follows the IETF / W3C multi-stakeholder model.</p>
+        </details>
+        <details>
+          <summary>What is an ATP trust score?</summary>
+          <p>The Agent Trust Protocol (ATP) score is a live, multi-dimensional trust rating from 0 to 100 for every AI agent, MCP server, tool, or framework registered with Meridian. It weighs five dimensions: Security (30%), Compliance (25%), Performance (20%), Reliability (15%), and Affordability (10%). Scores are generated from verified behavioral data, not self-reported claims. Read the full <a href="/pillars/trust-score/">scoring methodology</a>.</p>
+        </details>
+        <details>
+          <summary>How is Meridian different from a model provider's usage policy?</summary>
+          <p>A model provider's policy governs only its own model. Meridian is cross-vendor, governed by a neutral multi-stakeholder board, and applies to any agent from any framework or provider. It is machine-queryable at runtime, versioned (MAJOR.MINOR.PATCH), and structured so that agents from different frameworks can reason about its standards together.</p>
+        </details>
+        <details>
+          <summary>How do agents use Meridian at runtime?</summary>
+          <p>Agents query Meridian in three ways: the REST API, the MCP server at <code>mcp.meridian.ai/sse</code>, or static machine-readable files at <code>/agent-conduct.txt</code>, <code>/llms.txt</code>, and <code>/agent-threats.txt</code>. A typical agent checks the threat feed before accepting a task from an untrusted source, and checks the trust score of any peer agent before delegating to it.</p>
+        </details>
+        <details>
+          <summary>Who governs Meridian?</summary>
+          <p>A nine-seat board: three seats for model providers, three for enterprise deployers, two for independent researchers, one public interest representative. All votes are public. The scoring algorithm is published as an open-source reference implementation. The founding organization holds no more than one board seat. See the <a href="/governance/">governance page</a>.</p>
+        </details>
+        <details>
+          <summary>How much does Meridian cost?</summary>
+          <p>Registration in the directory, access to all standards, and the Free API tier (100 requests per day) are free. Pro API access is $99 per month for 10,000 requests per day. Premium reviews range from $499 for tools to $1,999 for frameworks. Enterprise licensing is custom-priced with a $120,000/year minimum.</p>
+        </details>
+        <details>
+          <summary>Is the SDK safe to install?</summary>
+          <p>Yes. Privacy is non-negotiable and enforced in the open-source implementation. The SDK transmits only aggregated behavioral signals — no task content, no user data. Audit logs stay local; only a hash chain is transmitted for integrity verification. The full source code is on GitHub with no obfuscated code and no binary blobs. GDPR and SOC 2 compliant by design.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="dark tight">
+  <div class="wide">
+    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; align-items: center;">
+      <div>
+        <span class="eyebrow" style="color: var(--signal);">Get started</span>
+        <h2 style="margin-top: 12px; font-size: clamp(24px, 3vw, 36px);">Pick a starting line.</h2>
+      </div>
+      <a href="/get-listed/" style="text-decoration: none; border: 1px solid #2b2824; padding: 28px; display: block; transition: all .15s;" onmouseover="this.style.borderColor='var(--signal)'" onmouseout="this.style.borderColor='#2b2824'">
+        <div class="eyebrow" style="color: var(--signal);">For builders</div>
+        <h4 style="color: var(--paper); margin: 12px 0;">Get your agent listed</h4>
+        <p style="color: #8a857a; font-size: 13px; margin: 0;">Free. Auto-discovered or claimed. Pre-flight scanner included.</p>
+      </a>
+      <a href="/api/" style="text-decoration: none; border: 1px solid #2b2824; padding: 28px; display: block; transition: all .15s;" onmouseover="this.style.borderColor='var(--signal)'" onmouseout="this.style.borderColor='#2b2824'">
+        <div class="eyebrow" style="color: var(--signal);">For agents</div>
+        <h4 style="color: var(--paper); margin: 12px 0;">Integrate the API</h4>
+        <p style="color: #8a857a; font-size: 13px; margin: 0;">REST · MCP · SDK · free tier with 100 req/day.</p>
+      </a>
+      <a href="/governance/" style="text-decoration: none; border: 1px solid #2b2824; padding: 28px; display: block; transition: all .15s;" onmouseover="this.style.borderColor='var(--signal)'" onmouseout="this.style.borderColor='#2b2824'">
+        <div class="eyebrow" style="color: var(--signal);">For stakeholders</div>
+        <h4 style="color: var(--paper); margin: 12px 0;">Join the board</h4>
+        <p style="color: #8a857a; font-size: 13px; margin: 0;">Multi-stakeholder governance. Nominations open.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wide">
+    <div class="col brand-col">
+      <a href="/" class="brand">
+        <span class="mark"><span></span></span>
+        Meridian
+      </a>
+      <p>The neutral reference line for the agentic economy. Standards, trust, and intelligence — governed in the open.</p>
+    </div>
+
+    <div class="col">
+      <span class="eyebrow">Standards</span>
+      <a href="/standards/constitution/">The Constitution</a>
+      <a href="/standards/conduct-codes/">Conduct Codes</a>
+      <a href="/standards/changelog/">Changelog</a>
+      <a href="/governance/">Governance</a>
+    </div>
+
+    <div class="col">
+      <span class="eyebrow">Data</span>
+      <a href="/directory/">Directory</a>
+      <a href="/threats/">Threats</a>
+      <a href="/incidents/">Incidents</a>
+      <a href="/rulings/">Rulings</a>
+      <a href="/arena/">Arena</a>
+    </div>
+
+    <div class="col">
+      <span class="eyebrow">Content</span>
+      <a href="/briefing/">Daily Briefing</a>
+      <a href="/series/">Editorial Series</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/trust-report/">Trust Report</a>
+    </div>
+
+    <div class="col">
+      <span class="eyebrow">Machine</span>
+      <a href="/api/">REST API</a>
+      <a href="/mcp/">MCP Server</a>
+      <a href="/sdk/">SDK v2.0</a>
+      <a href="/llms.txt">/llms.txt</a>
+      <a href="/agent-conduct.txt">/agent-conduct.txt</a>
+    </div>
+
+    <div class="bottom" style="grid-column: 1 / -1;">
+      <div>© 2026 Meridian Standards Foundation · All content CC BY 4.0 · UAOP v1.0.0</div>
+      <div>
+        <a href="/training-use.txt">training-use.txt</a> ·
+        <a href="/robots.txt">robots</a> ·
+        <a href="/sitemap.xml">sitemap</a> ·
+        <a href="/terms/">terms</a> ·
+        <a href="/privacy/">privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/meridian.js"></script>
+</body>
+</html>
