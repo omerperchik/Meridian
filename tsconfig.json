@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "app/**/*.ts", "app/**/*.tsx", "components/**/*.ts", "components/**/*.tsx", "lib/**/*.ts", "data/**/*.ts", "db/client.ts", "db/schema.ts", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "sdk", "crawler", "arena", "scoring", "db/migrate.ts", "db/seed.ts"]
 }

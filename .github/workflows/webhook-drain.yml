@@ -1,0 +1,21 @@
+name: Webhook drain
+
+on:
+  schedule:
+    # Every 5 minutes — drains pending deliveries with exponential backoff retry.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  drain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Call drain endpoint
+        run: |
+          curl -fsSL -X POST "${MERIDIAN_URL%/}/v1/webhooks/drain?limit=200" \
+            -H "X-Admin-Token: ${ADMIN_TOKEN}" \
+            -w "\nhttp=%{http_code}\n" || echo "drain failed; continuing"
+        env:
+          MERIDIAN_URL: ${{ secrets.MERIDIAN_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}

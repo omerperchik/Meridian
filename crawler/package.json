@@ -1,0 +1,19 @@
+{
+  "name": "meridian-crawler",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Scheduled crawler that discovers new AI agents/tools/MCP/frameworks across GitHub, npm, PyPI, Hacker News, and Product Hunt.",
+  "scripts": {
+    "start": "tsx crawl.ts",
+    "dry": "DRY_RUN=1 tsx crawl.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "drizzle-orm": "^0.38.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

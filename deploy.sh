@@ -95,6 +95,25 @@ log "Installing dependencies…"
 cd "$APP_DIR"
 npm install --no-audit --no-fund
 
+# Optional: run migrations if DATABASE_URL is configured
+if [ -f "${APP_DIR}/.env.local" ]; then
+  # shellcheck disable=SC1091
+  set -a; . "${APP_DIR}/.env.local"; set +a
+fi
+if [ -n "${DATABASE_URL:-}" ]; then
+  log "DATABASE_URL detected — applying migrations"
+  if ls db/migrations/*.sql >/dev/null 2>&1; then
+    npm run db:migrate || warn "migration run failed (continuing)"
+    # Seed only if registry table is empty (idempotent otherwise)
+    npm run db:seed || warn "seed run failed (continuing)"
+  else
+    warn "no migrations found — run 'npm run db:generate' in a dev checkout to create them"
+  fi
+else
+  warn "DATABASE_URL not set — site will serve the static TypeScript fixtures."
+  warn "  Provision free Postgres at https://neon.tech and put DATABASE_URL in ~/meridian/.env.local"
+fi
+
 log "Building production bundle… (first run takes ~60s)"
 NODE_ENV=production npm run build
 ok "Build complete"
@@ -117,6 +136,7 @@ WorkingDirectory=${APP_DIR}
 Environment=NODE_ENV=production
 Environment=PORT=${PORT}
 Environment=PATH=$(dirname "$NODE_PATH"):/usr/local/bin:/usr/bin:/bin
+EnvironmentFile=-${APP_DIR}/.env.local
 ExecStart=${NPM_PATH} run start -- -p ${PORT}
 Restart=on-failure
 RestartSec=5

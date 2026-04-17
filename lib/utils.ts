@@ -79,13 +79,21 @@ export function wantsJson(request: Request): boolean {
 /**
  * Standard API response wrapper.
  */
-export function apiJson<T>(data: T, init?: ResponseInit): Response {
+export function apiJson<T>(data: T, init?: ResponseInit & { rateLimit?: { limit: number; remaining: number; resetAt: Date } }): Response {
+  const rateHeaders: Record<string, string> = init?.rateLimit
+    ? {
+        "X-RateLimit-Limit": String(init.rateLimit.limit),
+        "X-RateLimit-Remaining": String(init.rateLimit.remaining),
+        "X-RateLimit-Reset": init.rateLimit.resetAt.toISOString(),
+      }
+    : {};
   return new Response(JSON.stringify({ data, meta: { version: "v1", timestamp: new Date().toISOString() } }, null, 2), {
     ...init,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "X-API-Version": "v1",
       "Cache-Control": "public, max-age=60, s-maxage=300, stale-while-revalidate=3600",
+      ...rateHeaders,
       ...(init?.headers || {}),
     },
   });

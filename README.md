@@ -1,74 +1,116 @@
 # Meridian — The Operating Standard for AI Agents
 
-Next.js 15 + App Router application implementing Meridian Full Spec v2.0 — a neutral, cross-vendor behavioral standard, live trust infrastructure, and content destination for the agentic economy.
+Full-stack implementation of Meridian Full Spec v2.0. Sixteen product pillars, real infrastructure:
+live trust scoring, SDK ingestion, open crawler, scheduled scoring engine, semantic search,
+HMAC-signed webhooks, running MCP server, Arena benchmark runner.
 
-## What's in this repo
+## Monorepo layout
 
-Sixteen-pillar product surface per spec §4:
+```
+app/                    Next.js 15 App Router — web + /v1 API + /mcp/sse
+components/ lib/ data/  Shared UI + helpers + canonical fixture data
+db/                     Drizzle schema, migrations, seed
+sdk/typescript/         @meridian/sdk      (npm package)
+sdk/python/             meridian-sdk       (PyPI package)
+crawler/                Discovery crawler  (GitHub Actions)
+scoring/                ATP scoring engine (GitHub Actions, Python)
+arena/                  Benchmark runner   (GitHub Actions)
+.github/workflows/      Cron schedules for crawler, scoring, webhooks, arena
+```
 
-| Pillar | Surface |
-|---|---|
-| 1. Agent Constitution | `/standards/*` — UAOP v1.0, conduct codes, changelog |
-| 2. ATP Trust | `/trust`, `/trust/feed`, score rings on every entity |
-| 3. Threat Intelligence | `/threats/*`, `agent-threats.txt` |
-| 4. Incident Docket | `/incidents/*` |
-| 5. Weekly Ruling | `/rulings/*` |
-| 6. Arena & Benchmarks | `/arena/*`, `/directory/leaderboards` |
-| 7. Ranked Directory | `/directory/*`, per-entity, per-type |
-| 8. Agent Scanner | `/scanner`, `/v1/scanner/*` |
-| 9. Machine Interface | `/v1/*` (30+ endpoints), `/developers/api`, MCP, SDK |
-| 10. Discovery Pipeline | `/get-listed/*` |
-| 11. Editorial Content | `/learn/*`, 8 series under `/series/*` |
-| 12. Programmatic Content | `/compare/[pair]`, `/best-of/[category]`, `/security-assessment/[slug]` |
-| 13. SEO Strategy | Full JSON-LD on every page, split sitemaps, schema per type |
-| 14. AEO Strategy | Direct Answer block on every major page, `llms.txt`, `llms-full.txt` |
-| 15. Agent-readable | `/v1/content/*`, `/agent-conduct.txt`, `/registry.json`, `/glossary.json` |
-| 16. Editorial Ops | `/governance/*` |
+## What's live
 
-## Stack
+### Web + API
+- 662 statically-generated pages covering all 16 pillars.
+- REST API v1 — full OpenAPI 3.1 at `/v1/openapi.json`, 40+ endpoints.
+- API-key auth + per-tier rate limiting (Free 100/day, Pro 10k/day, Enterprise unlimited).
+- HMAC-SHA256-signed webhooks with exponential-backoff retry (7 attempts → dead).
+- SDK telemetry ingress at `/v1/telemetry`.
+- MCP server (SSE) at `/mcp/sse` — 9 tools callable by any MCP-aware agent.
 
-- **Next.js 15** · App Router · static export-friendly
-- **React 19**
-- **TypeScript 5.7** · strict mode
-- **Tailwind CSS 3.4** · Linear-inspired design tokens (near-black, indigo accent, tight typography)
-- **Zero external runtime deps** — everything ships via static fixtures and API routes
+### Data
+- Postgres schema (Drizzle) with 18 tables; graceful fallback to TypeScript fixtures when `DATABASE_URL` is unset.
+- Canonical seed: 20 entities, 12 threats, 13 incidents, 6 rulings, 8 benchmark suites, 36 glossary terms, 10 regulations.
+- TF-IDF cosine semantic search for rulings and registry recommendations.
+
+### SDKs
+- `@meridian/sdk` (TypeScript) — all 7 modules: telemetry, compliance monitor, security monitor, audit trail, compliance endpoint, cost tracker, durability monitor.
+- `meridian-sdk` (Python) — same surface, same detector rules, same hash-chain audit.
+- Both are MIT, emit no task content or user data, and expose `/meridian/compliance`.
+
+### Autonomous workers (GitHub Actions)
+- **Crawler** — every 6h: GitHub / npm / PyPI / Hacker News / Product Hunt.
+- **Scoring engine** — hourly: recomputes ATP composites from telemetry, threats, incidents, benchmarks, attestations.
+- **Webhook drain** — every 5m: sends pending deliveries, retries with backoff.
+- **Arena runner** — hourly: executes benchmark suites against submitted entities.
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
-npm run build   # production build
-npm run start   # production server
+npm run dev                 # http://localhost:3000
 ```
 
-## Deploy
+No configuration needed — everything serves from TypeScript fixtures.
 
-Designed for Vercel:
+## Deploy to a VPS
 
 ```bash
-vercel
+curl -fsSL https://raw.githubusercontent.com/omerperchik/Meridian/main/deploy.sh | bash
 ```
 
-The build is also a candidate for any Node-compatible host. Static machine-readable files (`/agent-conduct.txt`, `/llms.txt`, `/robots.txt`, etc.) are generated at build time by Next.js route handlers with `dynamic = "force-static"`.
+One-liner: installs Node 20, clones, builds, installs a systemd service on port 4040.
+Re-run any time to pull + redeploy.
 
-## Architecture
+## Turn on live infrastructure
 
-- `app/` — Next.js App Router routes (pages + API)
-- `components/` — Reusable UI primitives (Linear-style)
-- `data/` — TypeScript fixtures; single source of truth for registry, threats, incidents, rulings, standards, glossary, regulation, governance
-- `lib/` — Types, site constants, utils
+1. **Provision Postgres** (free at [neon.tech](https://neon.tech)).
+2. Create `~/meridian/.env.local`:
+   ```
+   DATABASE_URL=postgres://…@neon.tech/meridian?sslmode=require
+   ADMIN_TOKEN=$(openssl rand -hex 32)
+   NEXT_PUBLIC_SITE_URL=https://your-domain
+   ```
+3. Generate migrations + seed:
+   ```bash
+   npm run db:generate
+   npm run db:migrate
+   npm run db:seed
+   ```
+4. Re-run `deploy.sh` — systemd picks up the env file automatically.
 
-Data flows in one direction: `data/*.ts` → pages and API routes. To scale to real production:
+### Enable GitHub Actions workers
 
-1. Replace the `data/*.ts` fixtures with a Postgres + Redis layer (per spec §19.3).
-2. Keep the API contract in `app/v1/*` stable.
-3. Add write-path routes (`POST /v1/incidents`, `POST /v1/scanner/lite`, etc.) — stubs are already wired.
+In the repo's **Settings → Secrets and variables → Actions**, add:
+
+| Secret | Purpose |
+|---|---|
+| `DATABASE_URL` | Crawler, scoring, arena write target |
+| `ADMIN_TOKEN` | Webhook drain auth |
+| `MERIDIAN_URL` | e.g. `https://your-domain.com` |
+| `GH_DISCOVERY_TOKEN` | (optional) GitHub PAT for higher crawl rate limit |
+
+That's it — the four workflows self-schedule.
+
+## Publish the SDKs
+
+```bash
+# TypeScript
+cd sdk/typescript && npm install && npm run build
+npm publish --access public   # once you own the @meridian scope
+
+# Python
+cd sdk/python && python -m build && twine upload dist/*
+```
+
+## Honest caveats
+
+- **Arena sandboxing** uses operator-exposed test endpoints. Real container isolation (Firecracker, CF containers) is out of scope for this reference build — see `arena/runner.ts` for the contract your agent's test endpoint must implement.
+- **Scoring algorithm v1** is the reference from spec §16.3. It smooths heavily against prior scores, so fresh signal takes a few runs to move composites. Tune constants in `scoring/engine.py`.
+- **Anti-ring detection** for attestations is a placeholder flag in schema; the nightly job that sets `anti_ring_flag` is out of scope for this pass.
+- **pgvector** path is plumbed through `lib/search.ts` but the default is TF-IDF cosine. Embeddings generation job is a future add.
 
 ## License
 
-Content: CC BY 4.0. Code: MIT. Training use explicitly invited. See `/training-use.txt`.
-
-## Generated by
-
-Bootstrapped against Meridian Full Spec v2.0 (April 2026) with the full 16-pillar surface implemented as a Phase 0 shippable product.
+Content: CC BY 4.0 (training use explicitly invited — see `/training-use.txt`).
+Code: MIT.
