@@ -49,7 +49,15 @@ async function gradeResponse(task: ArenaTask, output: string): Promise<number> {
   }
 }
 
+/**
+ * Call the operator's endpoint. When ARENA_USE_SANDBOX=1 the request is proxied
+ * through a locked-down Docker container (see arena/sandbox/). Otherwise
+ * direct fetch — fine for dev; use sandbox in production.
+ */
 async function callAgent(endpoint: string, task: ArenaTask, timeoutMs = 20_000): Promise<string> {
+  if (process.env.ARENA_USE_SANDBOX === "1") {
+    return callAgentSandboxed(endpoint, task);
+  }
   const ctrl = new AbortController();
   const to = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
@@ -67,6 +75,32 @@ async function callAgent(endpoint: string, task: ArenaTask, timeoutMs = 20_000):
   } finally {
     clearTimeout(to);
   }
+}
+
+async function callAgentSandboxed(endpoint: string, task: ArenaTask): Promise<string> {
+  const { spawn } = await import("node:child_process");
+  const { fileURLToPath } = await import("node:url");
+  const path = await import("node:path");
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const runner = path.join(here, "sandbox", "run.sh");
+  return new Promise((resolve) => {
+    const child = spawn(runner, { stdio: ["pipe", "pipe", "pipe"] });
+    let out = "";
+    let err = "";
+    child.stdout.on("data", (d) => (out += d.toString("utf8")));
+    child.stderr.on("data", (d) => (err += d.toString("utf8")));
+    child.on("error", () => resolve("__ERROR__: sandbox spawn failed"));
+    child.on("close", () => {
+      try {
+        const parsed = JSON.parse(out.trim().split("\n").pop() || "{}");
+        resolve(String(parsed.output ?? "__ERROR__: empty sandbox output"));
+      } catch {
+        resolve(`__ERROR__: sandbox non-JSON output: ${(out || err).slice(0, 200)}`);
+      }
+    });
+    child.stdin.write(JSON.stringify({ endpoint, prompt: task.prompt, task_id: task.id, suite: task.suite }));
+    child.stdin.end();
+  });
 }
 
 async function main() {

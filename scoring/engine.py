@@ -39,10 +39,54 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import psycopg
 
-ALGORITHM_VERSION = "1.0.0"
+ALGORITHM_VERSION = "1.1.0"
 
 TIER_CEILING = {0: 55, 1: 70, 2: 85, 3: 100}
 WEIGHTS = {"security": 0.30, "compliance": 0.25, "performance": 0.20, "reliability": 0.15, "affordability": 0.10}
+
+# ──────────────────────────────────────────────────────────────────
+# Smoothing constants — tunable via env.
+#
+# The scoring engine blends prior-score with fresh-signal to smooth noise.
+# Default coefficients are "stable" (heavy prior weight).
+# During bootstrap (sparse telemetry) you want fresh signal to move scores
+# faster — set SCORING_MODE=fast. Once you have weeks of telemetry, leave
+# it on the default "stable" to avoid whipsaw.
+#
+# Rules of thumb:
+#   SCORING_MODE=fast      → prior 0.40, new 0.60
+#   SCORING_MODE=stable    → prior 0.70, new 0.30 (default)
+#   SCORING_MODE=glacial   → prior 0.85, new 0.15 (regulated deployments)
+#
+# Or override any coefficient individually via SCORING_PRIOR_PERFORMANCE etc.
+# ──────────────────────────────────────────────────────────────────
+def _pair(base_prior: float) -> tuple[float, float]:
+    return base_prior, 1.0 - base_prior
+
+
+MODE = os.environ.get("SCORING_MODE", "stable").lower()
+_DEFAULT_PRIOR = {"fast": 0.40, "stable": 0.70, "glacial": 0.85}.get(MODE, 0.70)
+
+
+def _coef(name: str) -> tuple[float, float]:
+    raw = os.environ.get(f"SCORING_PRIOR_{name.upper()}")
+    p = float(raw) if raw else _DEFAULT_PRIOR
+    p = max(0.0, min(1.0, p))
+    return _pair(p)
+
+
+PERF_PRIOR, PERF_NEW = _coef("performance")
+REL_PRIOR, REL_NEW = _coef("reliability")
+AFF_PRIOR, AFF_NEW = _coef("affordability")
+
+# How much a single high-severity threat pulls down Security. Cap the penalty.
+SECURITY_PER_THREAT = float(os.environ.get("SCORING_SECURITY_PER_THREAT", "7.5"))
+SECURITY_MAX_THREAT_PENALTY = float(os.environ.get("SCORING_SECURITY_MAX_THREAT_PENALTY", "30.0"))
+SECURITY_PER_INCIDENT = float(os.environ.get("SCORING_SECURITY_PER_INCIDENT", "4.0"))
+SECURITY_MAX_INCIDENT_PENALTY = float(os.environ.get("SCORING_SECURITY_MAX_INCIDENT_PENALTY", "20.0"))
+
+# Threshold for considering a score change "significant" (writes to trust_scores)
+SIGNIFICANT_DELTA = float(os.environ.get("SCORING_SIGNIFICANT_DELTA", "0.5"))
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -193,8 +237,8 @@ def compute_dimensions(
     aff = float(base.get("affordability") or 60.0)
 
     # Security: penalize active high-sev threats and recent P0/P1 incidents.
-    sec -= min(30.0, active_threats * 7.5)
-    sec -= min(20.0, recent_incidents * 4.0)
+    sec -= min(SECURITY_MAX_THREAT_PENALTY, active_threats * SECURITY_PER_THREAT)
+    sec -= min(SECURITY_MAX_INCIDENT_PENALTY, recent_incidents * SECURITY_PER_INCIDENT)
     if telemetry.get("anomalies") and telemetry.get("n"):
         anomaly_rate = float(telemetry["anomalies"]) / max(1.0, float(telemetry["n"]))
         sec -= min(15.0, anomaly_rate * 150.0)
@@ -207,8 +251,7 @@ def compute_dimensions(
     # Performance: arena benchmarks (weighted average across suites).
     if arena:
         avg_arena = sum(s for _, s in arena) / len(arena)
-        # Blend 60% prior, 40% new arena signal — smooths quarterly swings.
-        per = 0.6 * per + 0.4 * avg_arena
+        per = PERF_PRIOR * per + PERF_NEW * avg_arena
 
     # Reliability: success/failure ratio over the last 24h, plus incident drag.
     n = telemetry.get("n") or 0
@@ -217,14 +260,14 @@ def compute_dimensions(
     total = succ + fail
     if n and total:
         success_rate = float(succ) / float(total)
-        rel = 0.7 * rel + 0.3 * (success_rate * 100.0)
+        rel = REL_PRIOR * rel + REL_NEW * (success_rate * 100.0)
     rel -= min(10.0, recent_incidents * 2.0)
 
     # Affordability: rough cost-per-task from token signals.
     if telemetry.get("tokens_in") and n:
         avg_tokens = (float(telemetry["tokens_in"]) + float(telemetry.get("tokens_out") or 0)) / float(n)
         # 4000 tokens ≈ median; fewer = better
-        aff = 0.7 * aff + 0.3 * _clamp(100.0 - (avg_tokens / 120.0))
+        aff = AFF_PRIOR * aff + AFF_NEW * _clamp(100.0 - (avg_tokens / 120.0))
 
     # Peer attestations: modest boost to compliance from positive signal.
     if attestations:
@@ -287,7 +330,7 @@ def main() -> int:
                         "scoring_engine",
                     ),
                 )
-                if abs(delta) >= 0.5:
+                if abs(delta) >= SIGNIFICANT_DELTA:
                     significant_changes += 1
                     cur.execute(
                         """

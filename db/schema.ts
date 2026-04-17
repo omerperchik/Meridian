@@ -458,6 +458,29 @@ export const arenaResults = pgTable("arena_results", {
 });
 
 // ─────────────────────────────────────────────────────────────────
+// Embeddings (pgvector)
+// Populated by scoring/embeddings.py; queried by semantic-search fallback.
+// Stored as JSON arrays for portability even without pgvector; a second
+// migration converts to vector(N) if pgvector is installed.
+// ─────────────────────────────────────────────────────────────────
+export const embeddings = pgTable(
+  "embeddings",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    kind: text("kind").notNull(), // 'ruling' | 'entity' | 'article' | 'term'
+    refId: text("ref_id").notNull(),
+    model: text("model").notNull(),
+    dim: integer("dim").notNull(),
+    vector: jsonb("vector").$type<number[]>().notNull(),
+    text: text("text").notNull(), // source text that was embedded
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    kindRefIdx: uniqueIndex("embeddings_kind_ref_idx").on(t.kind, t.refId, t.model),
+  }),
+);
+
+// ─────────────────────────────────────────────────────────────────
 // Scoring engine provenance
 // ─────────────────────────────────────────────────────────────────
 export const scoringRuns = pgTable("scoring_runs", {

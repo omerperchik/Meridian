@@ -1,0 +1,28 @@
+# Meridian Arena sandbox — per-submission agent runner.
+#
+# This image is what executes the submitted agent's code. We run *each*
+# submission in a fresh container with:
+#   - read-only root filesystem
+#   - no network except to the operator-declared arena_endpoint (enforced
+#     by the host network policy; see arena/sandbox/policy.json)
+#   - 512M RAM, 1 CPU, 120s timeout
+#   - non-root user, no new privileges, seccomp default, all caps dropped
+#
+# The runner's only job is to proxy a task prompt to the operator's test
+# endpoint and return the response. It does NOT execute operator code —
+# it's a network proxy in a locked-down container. Real execution happens
+# on the operator's own infrastructure (the test endpoint they declare).
+FROM node:20-alpine
+
+# Non-root user
+RUN addgroup -S arena && adduser -S -G arena arena
+WORKDIR /app
+
+# Minimal runtime — no shells, no compilers, no package managers at runtime
+COPY proxy.mjs ./proxy.mjs
+RUN chown -R arena:arena /app
+
+USER arena
+ENV NODE_OPTIONS="--disable-proto=delete --disallow-code-generation-from-strings"
+
+ENTRYPOINT ["node", "--no-experimental-fetch", "proxy.mjs"]
