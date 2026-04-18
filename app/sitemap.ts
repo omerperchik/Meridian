@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/arena", "/arena/submit", "/arena/red-team", "/standards/constitution",
     "/scanner", "/briefing",
     "/governance", "/governance/votes", "/governance/editorial", "/governance/conflicts", "/governance/audit",
-    "/developers", "/developers/api", "/developers/sdk", "/developers/mcp", "/developers/machine-files", "/developers/webhooks",
+    "/developers", "/developers/api", "/developers/sdk", "/developers/mcp", "/developers/machine-files", "/developers/webhooks", "/badges",
     "/learn", "/series", "/glossary", "/regulation",
     "/trust-report", "/get-listed", "/get-listed/submit",
     "/compare", "/best-of",

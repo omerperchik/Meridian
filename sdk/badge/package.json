@@ -1,0 +1,40 @@
+{
+  "name": "@meridian/badge",
+  "version": "1.0.0",
+  "description": "Drop-in React component for the Meridian trust badge. One line to show your live ATP score.",
+  "license": "MIT",
+  "author": "The Meridian Standards Body",
+  "homepage": "https://meridian.ai/badges",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omerperchik/Meridian.git",
+    "directory": "sdk/badge"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --clean --external react",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["meridian", "ai-agent", "badge", "trust-score", "react"],
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.2",
+    "react": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  }
+}

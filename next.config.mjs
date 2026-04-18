@@ -60,6 +60,24 @@ const nextConfig = {
           { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization, X-API-Key" },
         ],
       },
+      {
+        // Badges + live embeds must be loadable from any site (as <img> and in iframes).
+        // These headers override the global X-Frame-Options: SAMEORIGIN above.
+        source: "/badge/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+        ],
+      },
+      {
+        source: "/embed/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          { key: "X-Frame-Options", value: "ALLOWALL" },
+        ],
+      },
     ];
   },
   async redirects() {

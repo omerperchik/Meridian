@@ -206,6 +206,38 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </section>
       )}
 
+      {/* Embed badge — one-line snippet for the entity's README */}
+      <section className="mb-10">
+        <Card>
+          <div className="p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center gap-6">
+              <div className="flex-1 min-w-0">
+                <div className="eyebrow mb-2">Badge</div>
+                <h2 className="text-xl font-semibold mb-1">Show your score on your site</h2>
+                <p className="text-sm text-text-secondary mb-4">
+                  Copy one line to embed a live Meridian badge — SVG, iframe, or React. Free and CDN-cached.
+                </p>
+                <div className="rounded-md border border-border bg-surface-raised p-3 font-mono text-xs text-text-secondary overflow-x-auto whitespace-nowrap">
+                  {`[![Meridian](${SITE.url}/badge/${e.slug}.svg)](${SITE.url}/directory/${e.slug})`}
+                </div>
+                <div className="mt-3">
+                  <Button href="/badges" variant="secondary" size="sm">
+                    See all badge variants <Icon name="arrow-right" size={12} />
+                  </Button>
+                </div>
+              </div>
+              <img
+                src={`/badge/${e.slug}/full`}
+                alt={`${e.name} Meridian full badge`}
+                width={380}
+                height={92}
+                className="rounded-md shrink-0"
+              />
+            </div>
+          </div>
+        </Card>
+      </section>
+
       {related.length > 0 && (
         <section className="mt-12 pt-8 border-t border-border">
           <h2 className="text-2xl font-semibold mb-4">Related {e.type}s</h2>
